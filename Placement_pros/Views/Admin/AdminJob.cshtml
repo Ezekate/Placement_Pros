@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Core.VeiwModel.JobVeiwModel>
+
+
+<div class="container p-3">
+
+    <div class="row ">
+        <div class="col-8">
+            <h2 class="text-primary">List Jobs:</h2>
+        </div>
+
+    </div>
+    <br />
+    @if (Model != null || Model.Count() > 0)
+    {
+        <table class="table table-bordered table-responsive datatable table-striped" style="width:100%">
+            <thead class="bg-primary">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Location</th>
+                    <th>Title</th>
+                    <th>Salary</th>
+                    <th>JobType</th>
+                    <th>Active</th>
+                    <th > Action   </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var job in Model)
+                {
+                    <tr>
+
+                        <td @*width="30%"*@>@job.CompanyName </td>
+                        <td @*width="20%"*@>@job.Location</td>
+                        <td width="20%">@job.Title</td>
+                        <td @*width="20%"*@>@job.Salary</td>
+                        <td @*width="20%"*@>@job.JobType</td>
+                        <td @*width="20%"*@>@job.Active</td>
+
+                        <td @*width="30%"*@>
+                            @if (job.Active)
+                            {
+                                <button class=" btn btn-danger" onclick="myDelistjob('@job.Id')"> De-List </button>
+                            }
+                            else
+                            {
+                                <button class=" btn btn-danger" disabled onclick="myDelistjob('@job.Id')"> De-List </button>
+                            }
+
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <p>No Job Created yet</p>
+    }
+
+</div>
+

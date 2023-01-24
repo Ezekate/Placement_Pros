@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Core/bin/Debug/netcoreapp3.1
+/Logic/bin/Debug/netcoreapp3.1
+/Logic/obj
+/Placement_pros/bin/Debug/netcoreapp3.1
+/Placement_pros/Properties
+/Placement_pros/Views/Account/Login.cshtml
+/Placement_pros/obj
+/Core/obj

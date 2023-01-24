@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Core.VeiwModel.JobVeiwModel>
+
+<div class="col-8 form-body m-auto shadow bg-white ">
+
+    <div class="form-holder pt-0">
+        <div class="form-content pt-4">
+            <div class="form-items">
+                <h3 style="overflow: hidden; scroll-behavior: smooth;">Online Job Application Form</h3>
+                <p class="text-info">.</p>
+                <div class="col-12 ">
+                    <div class="card-header mx-sm-auto">
+                        @if (Model != null)
+                        {
+                            @foreach (var application in Model)
+                            {
+
+                                <div class="col-7">
+                                    <div class="row mb-2">
+                                        <div class="title">Phone No:</div>
+                                        <h6>@application.Discription</h6>
+                                        <div class="text ml-5"><a href=""></a></div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-7">
+                                    <div class="row mb-2">
+                                        <div class="title">Phone No:</div>
+                                        <h6>@application.Requirement</h6>
+                                        <div class="text ml-5"><a href=""></a></div>
+                                    </div>
+
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <div>
+                        <div class="row">
+
+
+                            <div class="col-md-6 mb-1">
+                                <label>Resume</label>
+                                <input class="form-control" name="text" type="file" style="border:none; outline:none; background-color:#f5f5f5;">
+                            </div>
+                            <div class="col-md-6 mb-1">
+                                <label>Upload CV</label>
+                                <input class="form-control" name="text" type="file" style="border:none; outline:none; background-color:#f5f5f5;">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>What position are u applying fo</label>
+                                <span class="choice-box_option-text text-dark">Employed</span>
+                                <span class="choice-box_option-text text-dark">UnEmployed</span>
+                                <span class="choice-box_option-text text-dark">A student</span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                        
+
+                          
+
+                      
+           </div>
+       </div>
+    </div>
+ </div>
+

@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Core.VeiwModel.JobVeiwModel>
+
+<div class="container">
+    <div class="row">
+        <div class="my-4">
+            <h4 class="text-center">Search for jobs</h4>
+        </div>
+        <div class="col-lg-12">
+            <div class="me-lg-5">
+                <div class="job-list-header">
+                    <form action="/form_search" method="post">
+                        <div class="row g-2">
+                            <div class="col-lg-6 col-md-6 mb-1">
+                                <div class="filler-job-form">
+
+                                    <input type="search" name="name" value="" class="form-control filter-job-input-box" placeholder="companyName ">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 mb-0">
+                                <div class="filler-job-form">
+
+                                    <input type="text" name="name" value="" class="form-control filter-job-input-box" placeholder="Location">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 mb-">
+                                <div class="filler-job-form">
+
+                                    <input type="text" name="name" value="" class="form-control filter-job-input-box" placeholder="Job Title">
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6 mb-1">
+                                <button type="submit" class="btn btn-primary w-100"><i class="uil uil-filter"></i> Fliter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="job-box  mt-4">
+    <div class="p-4">
+        <div class="row">
+
+            <div class="mt-3 mt-lg-0 col-12 ">
+                <h5 class="fs-16 fw-medium mb-1"> <small class="text-muted fw-normal"></small></h5>
+                @if (Model != null || Model.Count() > 0)
+                {
+
+                    @foreach (var job in Model)
+                    {
+                        <div class="card border hover  p-4 mt-2 border-info mb-0 text-black" id="@job.Id">
+                            <div class="row">
+
+                                <div class="col-8  bbb-text ">
+
+                                    <div class=" row list-inline-item">
+                                        <h3 class="fs-14 mb-1 ml-3 " style="font-size:16px">@job.Title </h3>
+                                    </div>
+
+                                    <div class=" row list-inline-item">
+                                        <h5 class=" fs-14 mb-1 text-info ml-3">@job.CompanyName</h5>
+                                    </div>
+                                    <div class=" row list-inline-item">
+                                        <p class=" fs-14 mb-1 ml-3">
+                                            <i class="fa fa-map-marker"></i>  @job.Location
+                                        </p>
+                                    </div>
+                                    <div class=" row list-inline-item stretched-link">
+                                        <p class=" fs-14 mb-1  ml-3">$@job.Salary</p>
+                                    </div>
+
+                                    <div class="stretched-link row ml-2">
+                                        <span class="badge bg-info p-1">@job.JobType</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class=" d-flex justify-content-end" style="color:#FFFF33;height:20px; margin-left:10px;" asp-action="CreateJobs" asp-controller="User">
+                                        <img src="~/image/avatar1.jpg" height="100" width="100" class="rounded-circle" alt="Cinque Terre" />
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <br>
+
+
+
+
+                    }
+                }
+                <div>
+                    <button class="btn btn-info float-left" onclick="redirect()">Apply</button>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+
+
+</div>

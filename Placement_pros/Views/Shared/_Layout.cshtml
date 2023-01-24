@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Placement_pros</title>
+
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/pros.css" rel="stylesheet" />
+
+
+    <link href="~/Summer.note/summernote/dist/summernote.css" rel="stylesheet" />
+    <link href="~/Summer.note/summernote/dist/summernote-bs4.css" rel="stylesheet" />
+    @*<link href="~/Summer.note/summernote/dist/summernote-lite.css" rel="stylesheet" />*@
+
+
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Placement_pros</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Skill"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="EducationalQualification"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="WorkExperience"> </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="CreateDropDown"> CreateDropDown</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="CreateJob"> CreateJob</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Jobs">AvaliableJobs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Contact">Contact us</a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="AdminJob">JObs</a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="JobApplication"> Job Application</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="l-margin pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Placement_pros - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/Summer.note/summernote/dist/summernote.js"></script>
+    <script src="~/Summer.note/summernote/dist/summernote-bs4.js"></script>
+    <script src="~/SweetAlert/sweetalert.min.js"></script>
+
+    <script type="text/javascript" src="js/sweetalert.min.js"></script>
+    <script src="~/js/Placement.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<script>
+    function ShowSwal(anyTitle, anyMessage) {
+        swal({
+            title: anyTitle,
+            text: anyMessage,
+            icon: "success",
+        });
+    }
+    ShowSwal(Job, Delisted );
+
+</script>

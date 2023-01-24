@@ -1,0 +1,574 @@
+﻿@model Core.VeiwModel.ProfileVeiwModel
+<!-- Page Content -->
+<div class="content container mt-n5" style="background-color: #e2e8f0; ">
+
+    <!-- Page Header -->
+    <div class="page-header ">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title mt-0">Profile</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-0">
+        <div class="card-body ">
+            <div class="row">
+                <div class="col-2">
+                <a href="#">
+                    @if (Model?.PersonalInfo?.ProfilePicture != null)
+                    {
+                        <img src="@Model?.PersonalInfo?.ProfilePicture" height="100" width="100" class="rounded-circle" alt="Cinque Terre" />
+                    }
+                    else
+                    {
+                        <img src="~/image/avatar1.jpg" height="100" width="100" class="rounded-circle" alt="Cinque Terre" />
+                    }
+                </a> 
+                </div>
+                <div class="col-3">
+                    <h3>@Model?.PersonalInfo?.FirstName @Model?.PersonalInfo?.LastName</h3>
+                </div>
+                <div class="col-7">
+                    <div class="row mb-2">
+                        <div class="title">Phone No:</div>
+                        <h6>@Model?.PersonalInfo?.PhoneNumber</h6>
+                        <div class="text ml-5"><a href=""></a></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="title">Email:</div>
+                        <h6>@Model?.PersonalInfo?.Email</h6>
+                        <div class="text ml-5"><a mailto:href=""></a></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="title ">Birthday:</div>
+                        <h6> @Model?.PersonalInfo?.Birthdate.ToString("MMMM dd") </h6>
+                        <div class="text ml-5"></div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="title">Gender:</div>
+                        <h6>@Model?.PersonalInfo.Gender</h6>
+                        <div class="text ml-5"></div>
+                    </div>
+                    <div class="row text-nowrap addr mb-2">
+                        <div class="title">Address:</div>
+                        <h6>@Model?.PersonalInfo?.Address</h6>
+                        <div class="text addr_text"></div>
+                    </div>
+                    <div class="pro-edit border border-1 rounded-circle px-2 bg-light ">
+                        <a data-target="#PersonalInfo" data-toggle="modal" class="edit-icon" onclick="" href="#"><i class="fa fa-pencil text-dark"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Header -->
+    <!--<div class="card mb-0">
+        <div class="card-body ">
+            <div class="row">
+
+                <div class="col-md-12 mt-2">
+                    <div class="profile-view d-inline-flex">
+                        <div class="profile-img-wrap col-2">
+                            <div class="profile-img-wrap">
+
+                                <a href="#">
+                                    @if (Model?.PersonalInfo?.ProfilePicture != null)
+                                    {
+                                        <img src="@Model?.PersonalInfo?.ProfilePicture" height="100" width="100" class="rounded-circle" alt="Cinque Terre" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/image/avatar1.jpg" height="100" width="100" class="rounded-circle" alt="Cinque Terre" />
+                                    }
+
+                                </a>
+                            </div>
+                        </div>
+                        <div class="profile-basic col-10 ">
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class=" mb-2">
+                                        <div class="profile-info-left">
+
+                                            <p class="First name m-t-0 mb-0"></p>
+                                            <h3>@Model?.PersonalInfo?.FirstName @Model?.PersonalInfo?.LastName</h3>-->
+    @*<a class="btn btn-success staff-msg mt-4 h-25 w-25 px-1" href="chat.html" data-toggle="modal" data-target="#profilepix">Change ProfilePicture</a>*@
+    <!--</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <ul class="personal-info">
+                                        <li class="row mb-2">
+                                            <div class="title">Phone No:</div>
+                                            <h6>@Model?.PersonalInfo?.PhoneNumber</h6>
+                                            <div class="text ml-5"><a href=""></a></div>
+
+                                        </li>
+                                        <li class="row mb-2">
+                                            <div class="title">Email:</div>
+                                            <h6>@Model?.PersonalInfo?.Email</h6>
+                                            <div class="text ml-5"><a mailto:href=""></a></div>
+                                        </li>
+                                        <li class="row mb-2">
+                                            <div class="title ">Birthday:</div>
+                                            <h6> @Model?.PersonalInfo?.Birthdate.ToString("MMMM dd") </h6>
+                                            <div class="text ml-5"></div>
+                                        </li>
+
+                                        <li class="row mb-2">
+                                            <div class="title">Gender:</div>
+                                            <h6>@Model?.PersonalInfo.Gender</h6>
+                                            <div class="text ml-5"></div>
+                                        </li>
+                                        <li class="row text-nowrap addr mb-2">
+                                            <div class="title">Address:</div>
+                                            <h6>@Model?.PersonalInfo?.Address</h6>
+                                            <div class="text addr_text"></div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="pro-edit border border-1 rounded-circle px-2 bg-light ">
+                        <a data-target="#PersonalInfo" data-toggle="modal" class="edit-icon" onclick="" href="#"><i class="fa fa-pencil text-dark"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>-->
+
+    <div class="card tab-box mb-3">
+        <div class="row user-tabs">
+            <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+                <ul class="nav nav-tabs nav-tabs-bottom">
+                    <li class="nav-item "><a href="#emp_profile" data-toggle="tab" class="nav-link active">Profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div class="row">
+    <div class="col-md-6 d-flex mt-2">
+        <div class="card profile-box flex-fill">
+            <div class="card-body">
+                <h3 class="card-title">Educational Qualification <a href="#" class="pro-edit" data-toggle="modal" data-target="#EducationalQualification"><i class="fa fa-pencil  text-dark bg-light border border-1 rounded-circle " style="font-size:19px; padding:5px;"></i></a></h3>
+                <div class="experience-box">
+                    @if (Model.EducationalQualifications != null)
+                    {
+                        <ul class="experience-list">
+                            @foreach (var education in Model?.EducationalQualifications)
+                            {
+                                <li>
+                                    <div class="experience-user">
+                                        <a href="#/" id="@education.Id" class="name">@education.Name</a>
+                                        <div class="before-circle"></div>
+                                    </div>
+                                    <div class="experience-content">
+                                        <div class="timeline-content">
+                                            <a href="#/" id="@education.Id" class="name">@education.Name</a>
+                                            <div>@education.Degree</div>
+                                            <span class="time">@education.StartDate.ToString("MMMM dd yyyy") - @education.EndDate.ToString("MMMM dd yyyy")</span>
+                                            <div>@education.FieldOfStudy</div>
+                                            <div>@education.Grade</div>
+                                        </div>
+                                    </div>
+
+                                </li>
+
+                             }
+                        </ul>
+                     }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 d-flex mt-2">
+        <div class="card profile-box flex-fill">
+            <div class="card-body">
+                <h3 class="card-title">Skill <a href="#" class="pro-edit" data-toggle="modal" data-target="#Skills"><i class="fa fa-pencil  text-dark bg-light border border-1 rounded-circle " style="font-size:19px; padding:5px;"></i></a></h3>
+                <div class="experience-box">
+                    @if (Model?.Skills != null)
+                     {
+                        <ul class="experience-list">
+
+                            @foreach (var skill in Model.Skills)
+                            {
+                                <li>
+                                    <div class="experience-user">
+                                        <div class="before-circle"></div>
+                                    </div>
+                                    <div class="experience-content">
+                                        <div class="timeline-content">
+                                            <a href="#/" id="@skill.Id" class="name">@skill.Name</a>
+
+                                        </div>
+                                    </div>
+                                </li>
+                     }
+                        </ul>}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 d-flex mt-2">
+        <div class="card profile-box flex-fill">
+            <div class="card-body">
+                <h3 class="card-title">Work Experience <a href="#" class="pro-edit" data-toggle="modal" data-target="#WorkExperience"><i class="fa fa-pencil  text-dark bg-light border border-1 rounded-circle " style="font-size:19px; padding:5px;"></i></a></h3>
+                <div class="experience-box">
+                    @if (Model?.WorkExperiences != null)
+                    {
+                        <ul class="experience-list">
+                            @foreach (var work in Model.WorkExperiences)
+                            {
+                                <li>
+                                    <div class="experience-user">
+                                        <div class="before-circle"></div>
+                                    </div>
+                                    <div class="experience-content">
+                                        <div class="timeline-content">
+                                            <a href="#/" class="name">@work.WorkPlace</a>
+                                            <span class="time">@work.DateStarted-@work.DateStarted</span>
+                                            <div>@work.Discription</div>
+                                            <div>@work.Location</div>
+                                        </div>
+                                    </div>
+                                </li>
+                     }
+                        </ul>}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*/Profile Info Tab
+
+
+
+     /Page Content
+    Profile Modal -*@
+
+<div id="PersonalInfo" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-10 form-body m-auto shadow bg-white ">
+
+                    <div>
+                        <div class="pt-2">
+                            <div class="form-items">
+                                <h3> PersonalInfo</h3>
+                                <p class="text-info">please complete the form below to update your info</p>
+                                @*<form asp-controller="User" asp-action="EditPersonalInfo" method="post" class="requires-validation">*@
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-1">
+                                        <label >FirstName</label>
+                                        <input  id="firstname" class="form-control" type="text" name="Firstname" placeholder="Frist Name" value="@Model?.PersonalInfo?.FirstName" style="border:none; outline:none; background-color:#f5f5f5;">
+                                    </div>
+                                    <div class="col-md-6 mb-1">
+                                        <label >LastName</label>
+                                        <input id="lastname" class="form-control" type="text" name="name" placeholder="LastName" value="@Model?.PersonalInfo?.LastName" style="border:none; outline:none; background-color:#f5f5f5;">
+                                    </div>
+                                    <div class="col-md-6 mb-1">
+                                        <label >BirthDate</label>
+                                        <input id="birthdate" class="form-control" name="text" type="date" placeholder="Birthdate" value="@Model?.PersonalInfo?.Birthdate" style="border:none; outline:none; background-color:#f5f5f5;">
+                                    </div>
+                                    <div class="col-md-6 mb-1">
+                                        <label>Upload ProfilePicture</label>
+                                        <input  id="profilepix" class="form-control" name="text" type="file" onchange="ConvertPictureToBase64(event)"  value="@Model?.PersonalInfo?.ProfilePicture" style="border:none; outline:none; background-color:#f5f5f5;">
+                                    </div>
+                                    <div class="col-md-4 mb-1">
+                                        <lable >Email</lable>
+                                        <input  id="email" class="form-control" type="email" name="email" value="@Model?.PersonalInfo?.Email" placeholder="Email Address" style="border:none; outline:none; background-color:#f5f5f5;">
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <label class=" mr-1">Gender: </label>
+                                        <select  id="gender" asp-items="@(new SelectList(@ViewBag.Gender,"Id", "Name", Model?.PersonalInfo?.GendeId))" class="form-control"  style="border:none; outline:none; background-color:#f5f5f5;">
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4 mb-1">
+                                        <lable>PhoneNumber</lable>
+                                        <input  id="Phone" class="form-control" type="text" name="text" placeholder="Phone no" value="@Model?.PersonalInfo?.PhoneNumber" style="border:none; outline:none; background-color:#f5f5f5;">
+                                    </div>
+                                    <div>
+
+                                    </div>
+                                    <div class="col-4 md- mb-1 justify-content-md-center">
+                                        <label>Country</label>
+                                        <select id="country" asp-for="PersonalInfo.CountryId" asp-items="@(new SelectList(@ViewBag.Countries, "Id", "Name",Model.PersonalInfo?.CountryId))" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <label class=" mr-1">State: </label>
+                                        <select id="state"  class="form-control" >
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-1 justify-content-md-center">
+                                        <label >Address</label>
+                                        <input id="address" class="form-control" name="address" placeholder="" value="@Model?.PersonalInfo?.Address" style="border:none; outline:none; background-color:#f5f5f5;" required>
+                                        <div class="valid-feedback">Address field is valid!</div>
+                                        <div class="invalid-feedback">Address field cannot be blank!</div>
+
+                                    </div>
+                                    <div class="col-md-12 mb-1 ">
+                                        <div class="form-group">
+                                            <label>Describe your self in few words</label>
+                                            <textarea row="30" cols="5" class="form-control" name="text" id="describe" value="@Model?.PersonalInfo?.Discription" style="border:none; outline:none; background-color:#f5f5f5;"></textarea>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="  form-button mt-2">
+                                        <button id="submit" type="submit" onclick="myPersonalinfo()" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*/Profile Modal
+    Education Modal*@
+<div id="EducationalQualification" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-10 form-body m-auto shadow bg-white ">
+
+                    <div>
+                        <div class="form-content pt-2">
+                            <div class="">
+                                <h3 class="text-primary">Add Qualification</h3>
+                                <hr>
+
+                                <div class="row">
+
+                                    <div class="col-md-12 mb-1 ">
+                                        <div class="form-group">
+                                            <labe>Name</label>
+                                                <input class="form-control" type="text" id="name" placeholder="universty attended" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mb-1 ">
+                                        <div class="form-group">
+                                            <label>Degree</label>
+                                            <input class="form-control" type="text" id="degree" placeholder="Degree" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-1 ">
+                                        <div class="form-group">
+                                            <label>Field Of study</label>
+                                            <input class="form-control" id="fieldofstudy" type="text" placeholder="Field of study" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-1 ">
+                                        <div class="form-group">
+                                            <label>Grade</label>
+                                            <input type="text" row="30" cols="5" id="grade" class="form-control" style="border:none;  outline:none; background-color:#f5f5f5;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-1 ">
+                                        <div class="form-group">
+                                            <label>StartDate</label>
+                                            <input type="date" row="30" id="startdate" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-1 ">
+                                        <div class="form-group">
+                                            <label>EndDate</label>
+                                            <input type="date" row="30" id="enddate" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="  form-button mt-2 m-auto">
+                                        <button id="submit" type="submit" class="btn btn-info" onclick="myEducation()">Submit</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Education Modal -->
+<div id="Skills" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> Skills</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @*Experience Modal*@
+                <div class="col-10 form-body m-auto shadow bg-white ">
+
+                    <div>
+                        <div class=" pt-4">
+                            <div class="form-items">
+                                <h3>Job Skills & Training</h3>
+                                <p class="text-info">please complete the form below to apply for a position</p>
+                                <form asp-controller="User" asp-action="Skill" method="post" class="requires-validation">
+                                    <div class="row">
+                                        <div class="col-10">
+
+                                            <div class="row">
+
+
+                                                <div class="col-md-12 mb-1">
+                                                    <div class="form-group">
+                                                        <label asp-for="Skill.Name">Skills</label>
+                                                        <input asp-for="Skill.Name" row="30" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+                                                    </div>
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="  form-button mt-2 m-auto">
+                                                    <button id="submit" type="submit" class="btn btn-info">Submit</button>
+                                                </div>
+
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*/Experience Modal*@
+
+@*ViewData["Title"] = "Edit";*@
+
+<div id="WorkExperience" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> WorkExperience</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @*Experience Modal*@
+                <div class="container-fluid m-auto">
+
+                    <form asp-controller="User" asp-action="WorkExperience" method="post">
+
+                        <div class="row">
+                            <div class="col-8  m-auto">
+
+                                <div class="card shadow bg-white ">
+                                    @*<div class="card-header bg-primary text-center text-white">
+                                            Work Experience
+                                        </div>*@
+
+
+                                    <div class="card-body border-danger  ">
+                                        <div class="row">
+
+                                            <div class="col-md-6 mb-3">
+                                                <label asp-for="WorkExperience.WorkPlace">Company Name</label>
+                                                <input asp-for="WorkExperience.WorkPlace" class="form-control" type="text" placeholder="Company name" style="border:none; outline:none; background-color:#f5f5f5;">
+
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label asp-for="WorkExperience.Location">Company location</label>
+                                                <input asp-for="WorkExperience.Location" class="form-control" type="text" placeholder="Company Location" style="border:none; outline:none; background-color:#f5f5f5;">
+
+                                            </div>
+
+
+                                            <div class="col-md-6 mb-3 ">
+                                                <div class="form-group">
+                                                    <label asp-for="WorkExperience.DateStarted"></label>
+                                                    <input asp-for="WorkExperience.DateStarted" type="date" row="30" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3 ">
+                                                <div class="form-group">
+                                                    <label asp-for="WorkExperience.DateClosed"></label>
+                                                    <input asp-for="WorkExperience.DateClosed" type="date" row="30" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-12 mb-3 ">
+                                                <div class="form-group">
+                                                    <label asp-for="WorkExperience.Discription">What was your job like</label>
+                                                    <textarea row="30" cols="5" class="form-control" asp-for="WorkExperience.Discription" style="border:none; outline:none; background-color:#f5f5f5;"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="  form-button mt-3 m-auto">
+                                                <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

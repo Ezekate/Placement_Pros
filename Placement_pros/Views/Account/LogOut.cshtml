@@ -1,0 +1,61 @@
+﻿
+    <div class="container-fluid  mt-5">
+        <div class="row">
+            <div class="col-6 m-auto">
+                @if (TempData["Message"] != null)
+                 {
+                    var tempDatamessage = (Core.Models.Message)TempData["Message"];
+                    <partial name="_Message" model="tempDatamessage" />
+                 }
+
+                <div class="card shadow ">
+                    <div class="card-header bg-primary">
+                        <h3 class="text-white text-center">Login</h3>
+                    </div>
+
+                    <div class=" col-10 card-body pt-4 mx-auto">
+                        <form asp-controller="Account" asp-action="Login" method="post">
+                            <div class="row">
+
+
+                                @*<div class="col-md-12 p-1">
+                                    <label asp-for="Email">Email</label>
+                                    <input asp-for="Email" class="form-control" type="email" name="email" placeholder="E-mail Address" style="border:none; outline:none; background-color:#f5f5f5;" required>
+                                    <div class="valid-feedback">Email field is valid!</div>
+                                    <div class="invalid-feedback">Email field cannot be blank!</div>
+                                </div>
+
+
+                                <br /><br />
+                                <div class="col-md-12 p-1">
+                                    <label asp-for="Password">Password</label>
+                                    <input asp-for="Password" class="form-control" type="password" name="password" placeholder="Password" style="border:none; outline:none; background-color:#f5f5f5;" required>
+                                    <div class="valid-feedback">Password field is valid!</div>
+                                    <div class="invalid-feedback">Password field cannot be blank!</div>
+                                </div>*@
+                                <br /><br />
+
+                                <div class=" col-12 mb-2">
+                                    <button type="submit" class="btn btn-primary  -4 mt-3">Submit</button>
+
+                                </div>
+                                <div class="col-md-6 text-info pt-2 ">
+                                    <input type="checkbox" class="form-check-input" />
+                                    <label class="form-check-label">Remember me</label>
+                                </div>
+                                <div class="col-md-6 text-info pt-2 text-center">
+                                    <a href="#">Forgot password?</a>
+                                </div>
+                                <br /><br />
+                                <div class="col-md-12 text-info text-center ">
+                                    <p class="d-inline-flex">Don't have an account?<a class="nav-link-white " asp-action="Profile">Register here</a> </p>
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

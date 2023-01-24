@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Placement_pros", "Placement_pros\Placement_pros.csproj", "{9FB0049B-264A-400F-A6EE-36D09FFCDDAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{1450D943-ED93-45C7-A806-BC3786DCF8CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{2A759F31-E11F-4F85-8562-57C6ED4E2ED1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FB0049B-264A-400F-A6EE-36D09FFCDDAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB0049B-264A-400F-A6EE-36D09FFCDDAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB0049B-264A-400F-A6EE-36D09FFCDDAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB0049B-264A-400F-A6EE-36D09FFCDDAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1450D943-ED93-45C7-A806-BC3786DCF8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1450D943-ED93-45C7-A806-BC3786DCF8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1450D943-ED93-45C7-A806-BC3786DCF8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1450D943-ED93-45C7-A806-BC3786DCF8CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A759F31-E11F-4F85-8562-57C6ED4E2ED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A759F31-E11F-4F85-8562-57C6ED4E2ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A759F31-E11F-4F85-8562-57C6ED4E2ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A759F31-E11F-4F85-8562-57C6ED4E2ED1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCB22767-CC4E-4D1A-A1AC-6761977D7F9A}
+	EndGlobalSection
+EndGlobal
