@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Core.Models.JobApplications>
+
+
+@{
+    ViewData["Title"] = "AdminJobApplication";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container ml-4 p-3 mt-4">
+
+    <div class="row ">
+        <div class="col-8">
+            <h4 class="text-success te ">List of Job Application </h4>
+        </div>
+
+    </div>
+    <br />
+    @if (Model != null || Model.Count() > 0)
+    {
+        <table class="table table-bordered table-responsive datatable table-striped" style="">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th> Applicant Name</th>
+                    <th> Job Title</th>
+                    <th> Job Location</th>
+                    <th> CompanyName</th>
+                    <th>Resume</th>
+                    <th>  Coverletter</th>
+
+                </tr>
+            </thead>
+
+            <tbody class="">
+                @foreach (var job in Model)
+                {
+                    <tr>
+                        <td>@job.ApplicationUser.FirstName    @job.ApplicationUser.LastName</td>
+                        <td>@job.Job.Title</td>
+                        <td> @job.Job.Location</td>
+                        <td> @job.Job.CompanyName</td>
+                        <td> <a href="@job.Resume" class="btn btn-info" download="@job.ApplicationUser.FirstName _Resume">DownLoad</a></td>
+                        <td> <a href="@job.Cv " class="btn btn-info" download="@job.ApplicationUser.FirstName _Cv">DownLoad </a></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No JobApplication Created yet</p>
+    }
+
+</div>

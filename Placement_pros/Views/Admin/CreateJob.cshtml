@@ -2,11 +2,11 @@
 
 @{
     ViewData["Title"] = "CreateJob";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <div class="row">
         <div class="col-8 m-auto">
             <div class="card shadow ">
@@ -45,17 +45,17 @@
 
                             <div class="col-md-12 p-1">
                                 <label asp-for="Discription">Discription</label>
-                                <textarea asp-for="Discription" id="description" class="form-control summernote" type="text" placeholder="Job discription" style="border:none; outline:none; background-color:#f5f5f5;" required></textarea>
+                                <textarea asp-for="Discription" class="form-control summernote" type="text" placeholder="Job discription" style="border:none; outline:none; background-color:#f5f5f5;" ></textarea>
                             </div>
 
                             <div class="col-12 p-1">
                                 <label asp-for="Requirement">Requirement</label>
-                                <textarea asp-for="Requirement" id="requirement" class="form-control summernote" type="text" placeholder="Job requirement " style="border:none; outline:none; background-color:#f5f5f5;" required></textarea>
+                                <textarea asp-for="Requirement" class="form-control summernote" type="text" placeholder="Job requirement " style="border:none; outline:none; background-color:#f5f5f5;" ></textarea>
                             </div>
 
 
                             <div class="  form-button mt-3 mx-auto">
-                                <button id="submit" type="submit" class="btn btn-info">Submit</button>
+                                <button id="submit" type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </form>

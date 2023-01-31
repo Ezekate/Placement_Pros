@@ -20,5 +20,6 @@ namespace Core.Database
         public DbSet<State> State { get; set; }
         public DbSet<Gender> Gender { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<JobApplications> JobApplications { get; set; }
     }
 }

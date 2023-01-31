@@ -18,6 +18,11 @@ namespace Logic.IHelpers
         Task<WorkExperience> CreateWorkExperience(WorkExperienceViewModel WorkExperience, string userId);
         bool EditPersonalInfo(PersonalInfoViewModel personalInfo);
         List<JobVeiwModel> AvaliableJobs();
+        JobVeiwModel GetDescription(Guid id);
+        JobApplications CreatResume(JobApplications jobapplication);
+        List<JobVeiwModel> JobFilter(JobVeiwModel jobsearch);
+        List<JobApplications> GetJobsbyId(string userId);
+
     }
 }
 

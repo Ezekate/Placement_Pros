@@ -143,6 +143,37 @@ namespace Core.Migrations
                     b.ToTable("Jobs");
                 });
 
+            modelBuilder.Entity("Core.Models.JobApplications", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Cv")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("JobId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Resume")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("JobApplications");
+                });
+
             modelBuilder.Entity("Core.Models.Skill", b =>
                 {
                     b.Property<int>("Id")
@@ -500,6 +531,21 @@ namespace Core.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Core.Models.JobApplications", b =>
+                {
+                    b.HasOne("Core.Models.Job", "Job")
+                        .WithMany()
+                        .HasForeignKey("JobId");
+
+                    b.HasOne("Core.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Job");
                 });
 
             modelBuilder.Entity("Core.Models.Skill", b =>

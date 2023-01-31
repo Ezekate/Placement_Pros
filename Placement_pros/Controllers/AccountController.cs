@@ -116,10 +116,6 @@ namespace Placement_pros.Controllers
                         SetMessage("Password and ComfirmPassword doesn't match", Message.Category.Error);
                         return View(model);
                     }
-                    if (model.Email != model.Email)
-                    {
-                        return View(model);
-                    }
                     var validUser = await _userManager.FindByEmailAsync(model.Email);
 
                     if (validUser != null)
@@ -134,24 +130,32 @@ namespace Placement_pros.Controllers
                     }
                     if (string.IsNullOrEmpty(model.LastName))
                     {
-
+                        SetMessage(" LastName can not be empty", Message.Category.Error);
                         return View(model);
                     }
 
-                    if (model.Gender != null) 
+                    if (model.GenderId  <=  0) 
                     {
-                        return View(model);
 
-                    }
-                    if (model.State != null)
-                    {
+                        SetMessage(" Gender can not be empty", Message.Category.Error);
                         return View(model);
                     }
-                    if (model.Country != null)
+                    if (model.StateId  <= 0)
                     {
+
+                        SetMessage(" State can not be empty", Message.Category.Error);
+                        return View(model);
+                    }
+                    if (model.CountryId <= 0)
+                    {
+                        SetMessage(" Country can not be empty", Message.Category.Error);
                         return View(model);
                     }
                     var userDetails = await _userHelper.CreateUser(model);
+                    if (userDetails != null)
+                    {
+                        return RedirectToAction("/");
+                    }
                 }
                 SetMessage("Invalide Login Attempt", Message.Category.Error);
                 return View(model);
@@ -164,17 +168,12 @@ namespace Placement_pros.Controllers
 
 
 
-        public IActionResult CreateDropdown() 
+        public async Task <IActionResult>LogOut() 
         {
-            try
-            {
-                return View();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            await _signInManager.SignOutAsync();
+             return RedirectToAction("Index","Home");
+           
         }
+
     }
 }

@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<Core.VeiwModel.JobVeiwModel>
 
-
+@{
+    ViewData["Title"] = "AdminJob";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
 <div class="container p-3">
 
     <div class="row ">
@@ -21,7 +24,7 @@
                     <th>Salary</th>
                     <th>JobType</th>
                     <th>Active</th>
-                    <th > Action   </th>
+                    <th> Action   </th>
                 </tr>
             </thead>
 

@@ -4,6 +4,7 @@ using Core.VeiwModel;
 using Logic.IHelpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace Placement_pros.Controllers
                 var userName = User?.Identity?.Name;
                 if (userName == null)
                 {
-                    return RedirectToAction( "Login","Account");
+                    return RedirectToAction("Login", "Account");
                 }
 
                 //calling method from userhelper
@@ -67,7 +68,7 @@ namespace Placement_pros.Controllers
                 var createSkill = _userHelper.CreateSkill(skill, user.Id);
                 if (createSkill != null)
                 {
-                    return View();
+                    return RedirectToAction("Profile", "User");
 
                 }
                 return RedirectToAction("Profile", "User");
@@ -92,7 +93,7 @@ namespace Placement_pros.Controllers
                 var createEducation = _userHelper.CreateEducationQualification(education, user.Id);
                 if (createEducation != null)
                 {
-                    return View();
+                    return RedirectToAction("Profile", "User");
 
                 }
                 return RedirectToAction("Profile", "User");
@@ -118,7 +119,7 @@ namespace Placement_pros.Controllers
                 var createworkExperience = _userHelper.CreateWorkExperience(workExperience, user.Id);
                 if (createworkExperience != null)
                 {
-                    return View();
+                    return RedirectToAction("Profile", "User");
 
                 }
                 return RedirectToAction("Profile", "User");
@@ -141,10 +142,10 @@ namespace Placement_pros.Controllers
                 //// var userToBeEdited = _userManager.FindByNameAsync(userName).Result;
                 if (userName == null)
                 {
-                    return Json(new {isError = true, data = ""});
+                    return Json(new { isError = true, data = "" });
                 }
                 personalInfo.UserName = userName;
-                if(string.IsNullOrEmpty(personalInfo.FirstName))
+                if (string.IsNullOrEmpty(personalInfo.FirstName))
                 {
                     return Json(new { isError = true, data = "" });
                 }
@@ -161,7 +162,7 @@ namespace Placement_pros.Controllers
                 throw ex;
             }
         }
-       
+
         [HttpGet]
         public IActionResult Jobs()
         {
@@ -177,22 +178,102 @@ namespace Placement_pros.Controllers
                 throw;
             }
         }
-        public IActionResult Contact()
+        [HttpGet]
+        public IActionResult JobApplication(Guid id)
         {
             try
             {
-                ViewBag.dropdown = _dropdownHelper.GetJobTypeDropdown();
-              
-                return View();
+                var get = _userHelper.GetDescription(id);
+                return View(get);
+
             }
             catch (Exception)
             {
+
                 throw;
             }
+        }
+        [HttpPost]
+        public JsonResult JobApplication(string jobApplication)
+        {
+            try
+            {
+                //to find the person that User
+                var username = User.Identity.Name;
+                //checking for null
+                if (jobApplication != null && username != null)
+                {
+                    var jobData = JsonConvert.DeserializeObject<JobApplications>(jobApplication);
+                    var userId = _dbContext.Users.Where(a => a.UserName == username).FirstOrDefault().Id;
+                    jobData.UserId = userId;
+                    var job = _userHelper.CreatResume(jobData);
+                    if (job != null)
+                    {
+                        return Json(new { isError = false, msg = "Application Submitted successful" });
+                    }
+                }
+
+                return Json(new { isError = true, msg = "Application Failed" });
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public JsonResult JobSearch(string searchData)
+        {
+            try
+            {
+                //checking for null
+                if (searchData != null)
+                {
+                    var searchModel = JsonConvert.DeserializeObject<JobVeiwModel>(searchData);
+                    if (searchModel != null)
+                    {
+                        var job = _userHelper.JobFilter(searchModel);
+                        if (job.Any())
+                        {
+                            return Json(new { isError = false, data = job });
+                        }
+                    }
+                }
+
+                return Json(new { isError = true, msg = " Failed to Fetch data" });
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult UserDashBoard( string userid)
+        {
+            
+                var jobsCount = _userHelper.GetJobsbyId(userid).Count;
+               var jobVeiw = new JobApplicationVIewModel()
+               {
+                        Jobcount = jobsCount,     
+              };
+                
+                return View(jobVeiw);
+
+
         }
 
 
     }
-
-
 }

@@ -1,66 +1,77 @@
-﻿@model IEnumerable<Core.VeiwModel.JobVeiwModel>
+﻿@model Core.VeiwModel.JobVeiwModel
 
-<div class="col-8 form-body m-auto shadow bg-white ">
+<div class="col-8 form-body m-auto  mt-2 ">
+    
+    <div class=" ">
 
-    <div class="form-holder pt-0">
+    <div class="mt-0 form-holder pt-0">
         <div class="form-content pt-4">
-            <div class="form-items">
-                <h3 style="overflow: hidden; scroll-behavior: smooth;">Online Job Application Form</h3>
+            <div class="form-items border-success">
+                <h3 style="overflow: hidden; scroll-behavior: smooth;"class="text-center">Apply For The Job</h3>
+                <hr >
                 <p class="text-info">.</p>
                 <div class="col-12 ">
-                    <div class="card-header mx-sm-auto">
+                    <div class=" mt-2">
                         @if (Model != null)
                         {
-                            @foreach (var application in Model)
-                            {
+                            <h5>  @Model.Title</h5>
+                            <div class="row">
 
-                                <div class="col-7">
-                                    <div class="row mb-2">
-                                        <div class="title">Phone No:</div>
-                                        <h6>@application.Discription</h6>
-                                        <div class="text ml-5"><a href=""></a></div>
-                                    </div>
+                                <div class="col-2 mb-2">
+
+                                    <p> <i class="fa fa-map-marker text-success  "></i>@Model.Location</p>
+                                </div>
+                                <div class="col-2 mb-2">
+                                    <p><i class=" text-success  fa fa-clock-o"></i>@Model.JobType</p>
+                                </div>
+                                <div class="col-2 mb-2">
+
+                                    <p><i class=" text-success fa fa-usd"></i>@Model.Salary</p>
 
                                 </div>
-
-                                <div class="col-7">
-                                    <div class="row mb-2">
-                                        <div class="title">Phone No:</div>
-                                        <h6>@application.Requirement</h6>
-                                        <div class="text ml-5"><a href=""></a></div>
-                                    </div>
-
+                            </div>
+                            <div class="row">
+                                <div class="col- mb-2">
+                                    <h3 class="title text-success">Discription</h3>
+                                    <br />
+                                    <p class="ml-3">@Html.Raw(Model.Discription)</p>
+                                    <div class="text ml-5"><a href=""></a></div>
                                 </div>
-                            }
+                            </div>
+
+                            <div class="row">
+                                <div class=" col- mb-1">
+                                    <h3 class="title text-success">Requirement</h3>
+                                    <br />
+                                    <p class="ml-3">@Html.Raw(Model.Requirement)</p>
+                                    <div class="text ml-5"><a href=""></a></div>
+                                </div>
+
+                            </div>
                         }
 
                     </div>
                     <div>
                         <div class="row">
-
-
-                            <div class="col-md-6 mb-1">
+                            <div class="col-md-6 mb-3">
                                 <label>Resume</label>
-                                <input class="form-control" name="text" type="file" style="border:none; outline:none; background-color:#f5f5f5;">
-                            </div>
-                            <div class="col-md-6 mb-1">
-                                <label>Upload CV</label>
-                                <input class="form-control" name="text" type="file" style="border:none; outline:none; background-color:#f5f5f5;">
+                                <input class="form-control" id="myResume" onchange="ConvertFilesToBase64(event)" name="Resume" type="file" style="border:none; outline:none; background-color:#f5f5f5;">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label>What position are u applying fo</label>
-                                <span class="choice-box_option-text text-dark">Employed</span>
-                                <span class="choice-box_option-text text-dark">UnEmployed</span>
-                                <span class="choice-box_option-text text-dark">A student</span>
-
+                                <label>Upload CV</label>
+                                <input class="form-control" id="myCv" onchange="ConvertFilesToBase64(event)" name="CV" type="file" style="border:none; outline:none; background-color:#f5f5f5;">
                             </div>
+
+                        </div>
+                        <div class="m-auto">
+                            <button class="btn btn-blue btn-primary mb-3 text-center" onclick="myJob('@Model.Id')">Apply Here</button>
                         </div>
                     </div>
                 </div>
 
                         
 
-                          
+             </div>         
 
                       
            </div>

@@ -4,6 +4,7 @@ using Core.Models;
 using Core.VeiwModel;
 using Logic.IHelpers;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -120,8 +121,8 @@ namespace Logic.Helpers
         {
             try
             {
-                var jobToEdit = _dbContext.Jobs.Where(v =>v.Id == id).FirstOrDefault();
-                if (jobToEdit==null)
+                var jobToEdit = _dbContext.Jobs.Where(v => v.Id == id).FirstOrDefault();
+                if (jobToEdit == null)
                 {
                     return false;
                 }
@@ -138,7 +139,29 @@ namespace Logic.Helpers
                 throw;
             }
         }
+        public List<JobApplications> GetApplicationJobs()
+        {
+                var result = new List<JobApplications>();
+                var jobApplication = _dbContext.JobApplications.Where(a => a.Id > 0).Include(a => a.Job).Include(a => a.ApplicationUser).ToList();
+                var jobApplications = jobApplication.Select(x => new JobApplicationVIewModel()
+                {
+                   Resume = x.Resume,
+                   Cv = x.Cv,
+                   UserId= x.UserId,
+                   Name = x.ApplicationUser.FirstName + x.ApplicationUser.LastName,
+                   JobTitle = x.Job.Title,
+                   Location = x.Job.Location,
+                    CompanyName = x.Job.CompanyName,
+                   
+                }).ToList();
+            if (jobApplications.Any())
+            {
+                return jobApplication;
+            }
+            return result;
+        }
+
     }
-   
-}
+}    
+
 

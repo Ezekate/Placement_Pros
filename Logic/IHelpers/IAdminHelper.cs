@@ -13,6 +13,7 @@ namespace Logic.IHelpers
         Task<Job> CreateJob(JobVeiwModel jobUpload);
         List<JobVeiwModel> GetJobs();
         bool DeList(Guid id);
+        List<JobApplications> GetApplicationJobs();
 
 
     }

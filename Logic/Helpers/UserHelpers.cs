@@ -41,6 +41,7 @@ namespace Logic.Helpers
             var result = await _userManager.CreateAsync(applicationUser, applicationUserViewModel.Password);
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(applicationUser, "User");
                 return applicationUser;
             }
             return null;
@@ -229,6 +230,7 @@ namespace Logic.Helpers
             var ListJob = new List<JobVeiwModel>();
             var job = _dbContext.Jobs.Where(r => r.Active == true)?.ToList();
             var jobs = job.Select(z => new JobVeiwModel()
+
             {
                 Id = z.Id,
                 Location = z.Location,
@@ -245,5 +247,98 @@ namespace Logic.Helpers
             }
             return ListJob;
         }
+
+        public JobVeiwModel GetDescription(Guid id)
+        {
+            var getnew = new JobVeiwModel();
+            if (id != Guid.Empty)
+            {
+                var get = _dbContext.Jobs.Where(r => r.Id == id).FirstOrDefault();
+                if (get != null)
+                {
+                    var myJob = new JobVeiwModel()
+                    {
+                        Id = get.Id,
+                        Discription = get.Discription,
+                        Requirement = get.Requirement,
+                        CompanyName = get.CompanyName,
+                        Location = get.Location,
+                        Title = get.Title,
+                        Salary = get.Salary,
+                        JobType = get.JobType
+                    };
+                    return myJob;
+                }
+            }
+            return getnew;
+        }
+        // fetching descrition and requirement
+        public JobApplications CreatResume(JobApplications jobapplication)
+        {
+            if (jobapplication != null)
+            {
+                _dbContext.Add(jobapplication);
+                _dbContext.SaveChanges();
+
+                return jobapplication;
+            }
+            return null;
+        }
+        //job Filter
+        public List<JobVeiwModel> JobFilter(JobVeiwModel jobsearch)
+        {
+            var filter = new List<Job>();
+            var searchResult = new List<JobVeiwModel>();
+            if (jobsearch != null)
+            {
+                var allJobs = _dbContext.Jobs.Where(r => r.Id != Guid.Empty && r.Active).ToList();
+                if (!string.IsNullOrEmpty(jobsearch.CompanyName))
+                {
+                    //searching forany name that contain the content
+                    var searchItem = jobsearch.CompanyName.ToLower();
+                    var results = allJobs.Where(r => r.CompanyName.ToLower().Contains(searchItem)).ToList();
+
+                    filter.AddRange(results);
+
+                }
+                if (!string.IsNullOrEmpty(jobsearch.Location))
+                {
+
+                    var results = allJobs.Where(r => r.Location.ToLower().Contains(jobsearch.Location.ToLower())).ToList();
+                    filter.AddRange(results);
+                }
+                if (!string.IsNullOrEmpty(jobsearch.Title))
+                {
+                    var results = allJobs.Where(r => r.Title.ToLower().Contains(jobsearch.Title.ToLower())).ToList();
+                    filter.AddRange(results);
+                }
+                searchResult = filter.Select(z => new JobVeiwModel()
+                {
+                    Id = z.Id,
+                    Location = z.Location,
+                    Discription = z.Discription,
+                    CompanyName = z.CompanyName,
+                    Salary = z.Salary,
+                    Title = z.Title,
+                    Type = z.JobType.ToString(),
+
+                }).ToList();
+                return searchResult.GroupBy(x => x.Id).Select(r => r.First()).ToList();
+            }
+            return null;
+        }
+        public List<JobApplications>GetJobsbyId( string userId)
+        {
+            var getalljob = new List<JobApplications>();
+            if (getalljob != null)
+            {
+                var allJobs = _dbContext.JobApplications.Where(v => v.UserId == userId).ToList();
+                return allJobs;
+            }
+            return getalljob;
+
+
+        }
+    
     }
 }

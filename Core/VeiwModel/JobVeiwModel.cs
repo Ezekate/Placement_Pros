@@ -14,6 +14,7 @@ namespace Core.VeiwModel
         public string Salary { get; set; }
         public string Discription { get; set; }
         public JobTypeEnum JobType { get; set; }
+        public string Type { get; set; }
         public string Requirement { get; set; }
         public string CompanyLogo { get; set; }
         public bool Active { get; set; }

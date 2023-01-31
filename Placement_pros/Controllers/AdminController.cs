@@ -2,6 +2,7 @@
 using Core.Models;
 using Core.VeiwModel;
 using Logic.IHelpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Placement_pros.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminController : BaseController
     {
         private readonly IAdminHelper _adminHelper;
@@ -150,6 +152,25 @@ namespace Placement_pros.Controllers
                 return Json(new { isError = false, msg = "Job de-listed successfully " });
             }
             return Json(new { isError = true, data = "Failed to de list job" });
+        }
+
+        [HttpGet]
+        public IActionResult AdminJobApplication()
+        {
+            try
+            {
+
+                var getjob = _adminHelper.GetApplicationJobs();
+                return View(getjob);
+
+
+            }
+            
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
