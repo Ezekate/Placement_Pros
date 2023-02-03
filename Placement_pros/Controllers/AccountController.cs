@@ -1,4 +1,5 @@
-﻿using Core.Database;
+﻿
+using Core.Database;
 using Core.Models;
 using Core.VeiwModel;
 using Logic.Helpers;
@@ -86,6 +87,86 @@ namespace Placement_pros.Controllers
             var state = _dbContext.State.Where(x => x.CountryId == id).ToList();
             return Json(state);
         }
+          [HttpGet]
+        public IActionResult RegisterAdmin()
+        {
+            try
+            {
+                ViewBag.Gender = _dropdownHelper.GetGenderDropdown();
+                ViewBag.Countries = _dbContext.Country.Where(s => s.Id != 0).ToList();
+                return View();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> RegisterAdmin(ApplicationUserViewModel model)
+        {
+            try
+            {
+                ViewBag.Gender = _dropdownHelper.GetGenderDropdown();
+                ViewBag.Countries = _dbContext.Country.Where(s => s.Id != 0).ToList();
+
+                if (model != null)
+                {
+                    if (model.Password != model.ConfirmPassword)
+                    {
+                        SetMessage("Password and ComfirmPassword doesn't match", Message.Category.Error);
+                        return View(model);
+                    }
+                    var validUser = await _userManager.FindByEmailAsync(model.Email);
+
+                    if (validUser != null)
+                    {
+                        SetMessage(" Email  belong to another user", Message.Category.Error);
+                        return View(model);
+                    }
+                    if (string.IsNullOrEmpty(model.FirstName))
+                    {
+                        SetMessage(" FirstName can not be empty", Message.Category.Error);
+                        return View(model);
+                    }
+                    if (string.IsNullOrEmpty(model.LastName))
+                    {
+                        SetMessage(" LastName can not be empty", Message.Category.Error);
+                        return View(model);
+                    }
+
+                    if (model.GenderId <= 0)
+                    {
+
+                        SetMessage(" Gender can not be empty", Message.Category.Error);
+                        return View(model);
+                    }
+                    if (model.StateId <= 0)
+                    {
+
+                        SetMessage(" State can not be empty", Message.Category.Error);
+                        return View(model);
+                    }
+                    if (model.CountryId <= 0)
+                    {
+                        SetMessage(" Country can not be empty", Message.Category.Error);
+                        return View(model);
+                    }
+                    var userDetails = await _userHelper.CreateAdmin(model);
+                    if (userDetails != null)
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
+                }
+                SetMessage("Invalide Login Attempt", Message.Category.Error);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpGet]
         public IActionResult Register() 
         {
@@ -101,6 +182,7 @@ namespace Placement_pros.Controllers
                 throw;
             }
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(ApplicationUserViewModel model)
         {
@@ -154,7 +236,7 @@ namespace Placement_pros.Controllers
                     var userDetails = await _userHelper.CreateUser(model);
                     if (userDetails != null)
                     {
-                        return RedirectToAction("/");
+                        return RedirectToAction("Login","Account");
                     }
                 }
                 SetMessage("Invalide Login Attempt", Message.Category.Error);
@@ -165,8 +247,7 @@ namespace Placement_pros.Controllers
                 throw;
             }
         }
-
-
+      
 
         public async Task <IActionResult>LogOut() 
         {

@@ -1,4 +1,9 @@
 ﻿@model Core.VeiwModel.ProfileVeiwModel
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <!-- Page Content -->
 <div class="col-10 mx-auto mt-3">
     <div class="col-12 mt-3" @*style="background-color: #e2e8f0; "*@>
@@ -37,28 +42,28 @@
                     <div class="col-7">
                         <div class="row mb-2">
                             <div class="title col-3 fw-bold">Phone No:</div>
-                            <h6 class = "col-6 p -0">@Model?.PersonalInfo?.PhoneNumber</h6>
+                            <h6 class="col-6 p -0">@Model?.PersonalInfo?.PhoneNumber</h6>
                             <div class="text ml-5"><a href=""></a></div>
                         </div>
                         <div class="row mb-2">
                             <div class="title  col-3 fw-bold">Email:</div>
-                            <h6  class = "col-6 p -0">@Model?.PersonalInfo?.Email</h6>
+                            <h6 class="col-6 p -0">@Model?.PersonalInfo?.Email</h6>
                             <div class="text ml-5"><a mailto:href=""></a></div>
                         </div>
                         <div class="row mb-2">
                             <div class="title col-3 fw-bold ">Birthday:</div>
-                            <h6  class = "col-6 p -0"> @Model?.PersonalInfo?.Birthdate.ToString("MMMM dd") </h6>
+                            <h6 class="col-6 p -0"> @Model?.PersonalInfo?.Birthdate.ToString("MMMM dd") </h6>
                             <div class="text ml-5"></div>
                         </div>
 
                         <div class="row mb-2">
                             <div class="title col-3 fw-bold">Gender:</div>
-                            <h6  class = "col-6 p -0">@Model?.PersonalInfo.Gender</h6>
+                            <h6 class="col-6 p -0">@Model?.PersonalInfo.Gender</h6>
                             <div class="text ml-5"></div>
                         </div>
                         <div class="row text-nowrap addr mb-2">
                             <div class="title col-3 fw-bold">Address:</div>
-                            <h6  class = "col-6 p -0">@Model?.PersonalInfo?.Address</h6>
+                            <h6 class="col-6 p -0">@Model?.PersonalInfo?.Address</h6>
                             <div class="text addr_text"></div>
                         </div>
                         <div class="pro-edit border border-1 rounded-circle px-2 bg-light ">
@@ -139,7 +144,9 @@
                                         </div>
                                     </li>
                                 }
-                            </ul>}
+
+                            </ul>
+                        }
                     </div>
                 </div>
             </div>
@@ -180,7 +187,6 @@
 @*/Profile Info Tab
 
 
-
      /Page Content
     Profile Modal -*@
 
@@ -206,38 +212,38 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-1">
                                         <label>FirstName</label>
-                                        <input id="firstname" class="form-control" type="text" name="Firstname" placeholder="Frist Name" value="@Model?.PersonalInfo?.FirstName" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        <input id="firstname" class="form-control" type="text" name="Firstname" placeholder="Frist Name" value="@Model?.PersonalInfo?.FirstName" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                     </div>
                                     <div class="col-md-6 mb-1">
                                         <label>LastName</label>
-                                        <input id="lastname" class="form-control" type="text" name="name" placeholder="LastName" value="@Model?.PersonalInfo?.LastName" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        <input id="lastname" class="form-control" type="text" name="name" placeholder="LastName" value="@Model?.PersonalInfo?.LastName" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                     </div>
                                     <div class="col-md-6 mb-1">
                                         <label>BirthDate</label>
-                                        <input id="birthdate" class="form-control" name="text" type="date" placeholder="Birthdate" value="@Model?.PersonalInfo?.Birthdate" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        <input id="birthdate" class="form-control" name="text" type="date" placeholder="Birthdate" value="@Model?.PersonalInfo?.Birthdate" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                     </div>
                                     <div class="col-md-6 mb-1">
                                         <label>Upload ProfilePicture</label>
-                                        <input id="profilepix" class="form-control" name="text" type="file" onchange="ConvertPictureToBase64(event)" value="@Model?.PersonalInfo?.ProfilePicture" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        <input id="profilepix" class="form-control" name="text" type="file" onchange="ConvertPictureToBase64(event)" value="@Model?.PersonalInfo?.ProfilePicture" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                     </div>
                                     <div class="col-md-6 mb-1">
                                         <lable>Email</lable>
-                                        <input id="email" class="form-control" type="email" name="email" value="@Model?.PersonalInfo?.Email" placeholder="Email Address" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        <input id="email" class="form-control" type="email" name="email" value="@Model?.PersonalInfo?.Email" placeholder="Email Address" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                     </div>
                                     <div class="col-md-6 ">
                                         <label class=" mr-1">Gender: </label>
-                                        <select id="gender" asp-items="@(new SelectList(@ViewBag.Gender,"Id", "Name", Model?.PersonalInfo?.GendeId))" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        <select id="gender" asp-items="@(new SelectList(@ViewBag.Gender,"Id", "Name", Model?.PersonalInfo?.GendeId))" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                         </select>
                                     </div>
 
                                     <div class="col-md-6 mb-1">
                                         <lable>PhoneNumber</lable>
-                                        <input id="Phone" class="form-control" type="text" name="text" placeholder="Phone no" value="@Model?.PersonalInfo?.PhoneNumber" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        <input id="Phone" class="form-control" type="number" placeholder="Phone no" value="@Model?.PersonalInfo?.PhoneNumber" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                     </div>
-                                 
+
                                     <div class="col-6 md- mb-1 justify-content-md-center">
                                         <label>Country</label>
-                                        <select id="country" asp-for="PersonalInfo.CountryId" asp-items="@(new SelectList(@ViewBag.Countries, "Id", "Name",Model.PersonalInfo?.CountryId))" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+                                        <select id="country" asp-for="PersonalInfo.CountryId" asp-items="@(new SelectList(@ViewBag.Countries, "Id", "Name",Model.PersonalInfo?.CountryId))" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                         </select>
                                     </div>
                                     <div class="col-md-6 ">
@@ -296,41 +302,40 @@
 
                                     <div class="col-md-12 mb-1 ">
                                         <div class="form-group">
-                                            <labe>
-                                                Name</label>
-                                                <input class="form-control" type="text" id="name" placeholder="universty attended" style="border:none; outline:none; background-color:#f5f5f5;">
+                                            <labe>Name</labe>
+                                            <input class="form-control" type="text" id="name" placeholder="universty attended" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 mb-1 ">
                                         <div class="form-group">
                                             <label>Degree</label>
-                                            <input class="form-control" type="text" id="degree" placeholder="Degree" style="border:none; outline:none; background-color:#f5f5f5;">
+                                            <input class="form-control" type="text" id="degree" placeholder="Degree" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-1 ">
                                         <div class="form-group">
                                             <label>Field Of study</label>
-                                            <input class="form-control" id="fieldofstudy" type="text" placeholder="Field of study" style="border:none; outline:none; background-color:#f5f5f5;">
+                                            <input class="form-control" id="fieldofstudy" type="text" placeholder="Field of study" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-1 ">
                                         <div class="form-group">
                                             <label>Grade</label>
-                                            <input type="text" row="30" cols="5" id="grade" class="form-control" style="border:none;  outline:none; background-color:#f5f5f5;">
+                                            <input type="number" row="30" cols="5" id="grade" class="form-control" style="border:none;  outline:none; background-color:#f5f5f5;" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-1 ">
                                         <div class="form-group">
                                             <label>StartDate</label>
-                                            <input type="date" row="30" id="startdate" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+                                            <input type="date" row="30" id="startdate" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;" required>
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-1 ">
                                         <div class="form-group">
                                             <label>EndDate</label>
-                                            <input type="date" row="30" id="enddate" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+                                            <input type="date" row="30" id="enddate" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;" required>
 
                                         </div>
                                     </div>
@@ -379,14 +384,14 @@
                                                 <div class="col-md-12 mb-1">
                                                     <div class="form-group">
                                                         <label asp-for="Skill.Name">Skills</label>
-                                                        <input asp-for="Skill.Name" row="30" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+                                                        <input asp-for="Skill.Name" row="30" cols="5" id="name" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                                     </div>
                                                 </div>
 
                                                 <hr>
 
                                                 <div class="  form-button mt-2 m-auto">
-                                                    <button id="submit" type="submit" class="btn btn-success">Submit</button>
+                                                    <button id="submit" type="submit" onclick="mySkill()" class="btn btn-success">Submit</button>
                                                 </div>
 
 
@@ -424,28 +429,21 @@
                 <div class="container-fluid m-auto">
 
                     <form asp-controller="User" asp-action="WorkExperience" method="post">
-
                         <div class="row">
                             <div class="col-8  m-auto">
-
                                 <div class="card  bg-white ">
-                                    @*<div class="card-header bg-primary text-center text-white">
-                                            Work Experience
-                                        </div>*@
-
-
                                     <div class="card-body border-danger  ">
                                         <div class="row">
 
                                             <div class="col-md-6 mb-3">
                                                 <label asp-for="WorkExperience.WorkPlace">Company Name</label>
-                                                <input asp-for="WorkExperience.WorkPlace" class="form-control" type="text" placeholder="Company name" style="border:none; outline:none; background-color:#f5f5f5;">
+                                                <input asp-for="WorkExperience.WorkPlace" class="form-control" type="text" placeholder="Company name" style="border:none; outline:none; background-color:#f5f5f5;" required>
 
                                             </div>
 
                                             <div class="col-md-6 mb-3">
                                                 <label asp-for="WorkExperience.Location">Company location</label>
-                                                <input asp-for="WorkExperience.Location" class="form-control" type="text" placeholder="Company Location" style="border:none; outline:none; background-color:#f5f5f5;">
+                                                <input asp-for="WorkExperience.Location" class="form-control" type="text" placeholder="Company Location" style="border:none; outline:none; background-color:#f5f5f5;" required>
 
                                             </div>
 
@@ -453,13 +451,13 @@
                                             <div class="col-md-6 mb-3 ">
                                                 <div class="form-group">
                                                     <label asp-for="WorkExperience.DateStarted"></label>
-                                                    <input asp-for="WorkExperience.DateStarted" type="date" row="30" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+                                                    <input asp-for="WorkExperience.DateStarted" type="date" row="30" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-3 ">
                                                 <div class="form-group">
                                                     <label asp-for="WorkExperience.DateClosed"></label>
-                                                    <input asp-for="WorkExperience.DateClosed" type="date" row="30" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;">
+                                                    <input asp-for="WorkExperience.DateClosed" type="date" row="30" cols="5" class="form-control" style="border:none; outline:none; background-color:#f5f5f5;" required>
 
                                                 </div>
 
@@ -467,7 +465,7 @@
                                             <div class="col-md-12 mb-3 ">
                                                 <div class="form-group">
                                                     <label asp-for="WorkExperience.Discription">What was your job like</label>
-                                                    <textarea row="30" cols="5" class="form-control" asp-for="WorkExperience.Discription" style="border:none; outline:none; background-color:#f5f5f5;"></textarea>
+                                                    <textarea row="30" cols="5" class="form-control" asp-for="WorkExperience.Discription" style="border:none; outline:none; background-color:#f5f5f5;" required></textarea>
                                                 </div>
                                             </div>
                                             <div class="  form-button mt-3 m-auto">

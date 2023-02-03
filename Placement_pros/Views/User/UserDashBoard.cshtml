@@ -10,7 +10,7 @@
 
             </div>
             <div class="row">
-                <h5 class="text-success">Job Board/Dashboard</h5>
+                <h5 class="text-success">User/Dashboard</h5>
 
             </div>
         </div>
@@ -23,7 +23,9 @@
                 <div class="col-4 d-grid">
                     <div class="card bg-white shadow  border border-success">
                         <div class="card-body">
-                            <i class=" fa fa-briefcase green"></i>
+                            <div class="category icon  text-success icon-align-center offset-5" ">
+                                <i class="text-center fa fa-briefcase green "></i>
+                            </div>
                             <a href="/User/Jobs" class="text-center"><h4>Avaliable Jobs</h4></a>
                         </div>
                     </div>
@@ -32,14 +34,14 @@
                 <div class="col-4">
                     <div class="card bg-white shadow  border border-success">
                         <div class="card-body">
-                            <div class="category icon  text-success icon-align-center"">
-                                <i class=" fa fa-briefcase green "></i>
+                            <div class="category icon  text-success icon-align-center offset-5">
+                                <i class="text-center fa fa-briefcase green "></i>
                             </div>
                            
-                            <a href="/User/Jobs" class="text-center d-block">
+                            <div class="text-center d-block">
                                 <h4>My Jobs</h4>
                                 @Model?.Jobcount
-                            </a>
+                            </div>
 
                             <p></p>
                         </div>
@@ -50,8 +52,8 @@
                     <div class="card bg-white shadow border border-success">
                         <div class="card-body">
                       
-                            <div class="category icon  text-success note-icon-align-center">
-                                <i class=" fa fa-user  icon-success  "></i>
+                            <div class="category icon  text-success note-icon-align-center offset-5">
+                                <i class=" text-center fa fa-user   icon-success  "></i>
                             </div>
                             <a href="/User/Profile" class="text-center"><h4>User Profile</h4></a>
                         </div>

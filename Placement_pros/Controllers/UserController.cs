@@ -54,24 +54,34 @@ namespace Placement_pros.Controllers
             }
         }
 
-        public IActionResult Skill(SkillViewModel skill)
+        public JsonResult Skill(SkillViewModel skill)
         {
             try
             {
                 var userName = User?.Identity?.Name;
                 var user = _userManager.FindByNameAsync(userName).Result;
+                //ModelState.Clear();
+                //if (user == null)
+                //{
+                //    return RedirectToAction("Profile", "User");
+                //}
+                //var createSkill = _userHelper.CreateSkill(skill, user.Id);
+                //if (createSkill != null)
+                //{
+                //    return RedirectToAction("Profile", "User");
+
+                //}
+                //return RedirectToAction("Profile", "User");
                 if (user == null)
                 {
-
-                    return RedirectToAction("Profile", "User");
+                    return Json(new { isError = true, msg = "Error Occured" });
                 }
                 var createSkill = _userHelper.CreateSkill(skill, user.Id);
                 if (createSkill != null)
                 {
-                    return RedirectToAction("Profile", "User");
-
+                    return Json(new { isError = false, msg =" Skill updated successfully" });
                 }
-                return RedirectToAction("Profile", "User");
+                return Json(new { isError = true, msg = "Error Occured" });
             }
             catch (Exception)
             {
@@ -79,8 +89,8 @@ namespace Placement_pros.Controllers
                 throw;
             }
         }
-        //[HttpPost]
-        public IActionResult EducationalQualification(EducationalQualificationVeiwModel education)
+        [HttpPost]
+        public JsonResult EducationalQualification(EducationalQualificationVeiwModel education)
         {
             try
             {
@@ -88,15 +98,32 @@ namespace Placement_pros.Controllers
                 var user = _userManager.FindByNameAsync(userName).Result;
                 if (user == null)
                 {
-                    return RedirectToAction("Profile", "User");
+                    return Json(new { isError = true, msg = "Error Occured" });
                 }
+                if (string.IsNullOrEmpty(education.Degree))
+                {
+                    return Json(new { isError = true, msg = "Error Occured" });
+                }
+                if (string.IsNullOrEmpty(education.FieldOfStudy))
+                {
+                    return Json(new { isError = true, msg = "Error Occured" });
+                }
+                if (string.IsNullOrEmpty(education.Grade))
+                {
+                    return Json(new { isError = true, msg = "Error Occured" });
+                }
+                if (string.IsNullOrEmpty(education.Name))
+                {
+                    return Json(new { isError = true, msg = "Error Occured" });
+                }
+
                 var createEducation = _userHelper.CreateEducationQualification(education, user.Id);
                 if (createEducation != null)
                 {
-                    return RedirectToAction("Profile", "User");
+                    return Json(new { isError = false, msg = "Educational qualification updated successfully" });
 
                 }
-                return RedirectToAction("Profile", "User");
+                return Json(new { isError = true, msg = "Error Occured" });
             }
             catch (Exception)
             {
@@ -142,20 +169,37 @@ namespace Placement_pros.Controllers
                 //// var userToBeEdited = _userManager.FindByNameAsync(userName).Result;
                 if (userName == null)
                 {
-                    return Json(new { isError = true, data = "" });
+                    return Json(new { isError = true, msg = "Error Occured" });
                 }
                 personalInfo.UserName = userName;
                 if (string.IsNullOrEmpty(personalInfo.FirstName))
                 {
-                    return Json(new { isError = true, data = "" });
+                    return Json(new { isError = true, msg = "Error Occured" });
                 }
+                if (string.IsNullOrEmpty(personalInfo.LastName))
+                {
+                    return Json(new { isError = true, msg = "Error Occured" });
+                }
+                if (string.IsNullOrEmpty(personalInfo.PhoneNumber))
+                {
+                    return Json(new { isError = true, msg = "Error Occured" });
+                }
+                if (string.IsNullOrEmpty(personalInfo.Email))
+                {
+                    return Json(new { isError = true, msg = "Error Occured" });
+                }
+                if (string.IsNullOrEmpty(personalInfo.Address))
+                {
+                    return Json(new { isError = true, msg = "Error Occured" });
+                }
+                
                 var useEdited = _userHelper.EditPersonalInfo(personalInfo);
 
                 if (useEdited == true)
                 {
                     return Json(new { isError = false, msg = "user detail updated successfully " });
                 }
-                return Json(new { isError = true, data = "" });
+                return Json(new { isError = true, msg = "Error Occured" });
             }
             catch (Exception ex)
             {
@@ -168,6 +212,11 @@ namespace Placement_pros.Controllers
         {
             try
             {
+                //var userName = User?.Identity?.Name;
+                //if (userName == null)
+                //{
+                //    return RedirectToAction("Login", "Account");
+                //}
                 ViewBag.dropdown = _dropdownHelper.GetJobTypeDropdown();
                 //var job = _dbContext.Jobs.ToList();
                 var job = _userHelper.AvaliableJobs();
@@ -183,6 +232,11 @@ namespace Placement_pros.Controllers
         {
             try
             {
+                //var userName = User?.Identity?.Name;
+                //if (userName == null)
+                //{
+                //    return RedirectToAction("Login", "Account");
+                //}
                 var get = _userHelper.GetDescription(id);
                 return View(get);
 
@@ -260,10 +314,12 @@ namespace Placement_pros.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult UserDashBoard( string userid)
+        public IActionResult UserDashBoard()
         {
-            
-                var jobsCount = _userHelper.GetJobsbyId(userid).Count;
+
+            var userName = User?.Identity?.Name;
+         
+            var jobsCount = _userHelper.GetJobsbyId(userName).Count;
                var jobVeiw = new JobApplicationVIewModel()
                {
                         Jobcount = jobsCount,     

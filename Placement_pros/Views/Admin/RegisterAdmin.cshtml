@@ -1,0 +1,89 @@
+﻿@model Core.VeiwModel.ApplicationUserViewModel
+
+    <div class="col-8 form-body m-auto shadow bg-white mt-4 ">
+
+        @if (TempData["Message"] != null)
+        {
+            var tempDatamessage = (Core.Models.Message)TempData["Message"];
+            <partial name="_Message" model="tempDatamessage" />
+        }
+
+        <div class="form-holder pt-0">
+            <div class="form-content pt-4">
+                <div class="form-items border border-success">
+                    <h3>Register Today</h3>
+                    <p class="text-success">Fill in the data below.</p>
+
+
+                    <form asp-controller="Account" asp-action="Register" method="post" class="requires-validation">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="FirstName">FirstName</label>
+                                <input type="text" asp-for="FirstName" class="form-control" placeholder="First Name" required>
+                                <div class="valid-feedback">Username field is valid!</div>
+                                <div class="invalid-feedback">Username field cannot be blank!</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LastName">LastName</label>
+                                <input type="text" asp-for="LastName" class="form-control" placeholder="Last Name" required>
+                                <div class="valid-feedback">Username field is valid!</div>
+                                <div class="invalid-feedback">Username field cannot be blank!</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <lable asp-for="Email">Email</lable>
+                                <input type="email" asp-for="Email" class="form-control" placeholder="E-mail Address" required>
+                                <div class="valid-feedback">Email field is valid!</div>
+                                <div class="invalid-feedback">Email field cannot be blank!</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Password">Password</label>
+                                <input type="password" asp-for="Password" class="form-control" placeholder="Password" required>
+                                <div class="valid-feedback">Password field is valid!</div>
+                                <div class="invalid-feedback">Password field cannot be blank!</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PhoneNo"></label>
+                                <input type="number" asp-for="PhoneNo" class="form-control" placeholder="Phone no" required>
+                                <div class="valid-feedback">PhoneNo field is valid!</div>
+                                <div class="invalid-feedback">PhoneNo field cannot be blank!</div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label asp-for="ConfirmPassword" class="">ConfirmPassword</label>
+                                <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="ConfirmPassword" required>
+                                <div class="valid-feedback">Password field is valid!</div>
+                                <div class="invalid-feedback">Password field cannot be blank!</div>
+                            </div>
+                            <div class="col-md-6 ">
+
+                                <label class=" mr-1" asp-for="Gender">Gender: </label>
+                                <select class="form-select" asp-for="GenderId" asp-items="@(new SelectList(ViewBag.Gender  ,"Id", "Name" ))" aria-label="Default select example">
+                                </select>
+                            </div>
+                            <div class="col-md-6 ">
+                                <label class=" mr-1" asp-for="Country">Country: </label>
+                                <select id="country" asp-for="CountryId" class="form-control" asp-items="@(new SelectList(@ViewBag?.Countries  ,"Id", "Name" ))" style="border-radius:20px;">
+                                    <option value="">-- Select Country----</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 ">
+                                <label class=" mr-1" asp-for="State">State: </label>
+                                <select id="state" asp-for="StateId" class="form-control" style="border-radius:20px;">
+                                    <option value="">-- Select State----</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label">I confirm that all data are correct</label>
+                            <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
+                        </div>
+                        <div class="form-button mt-3">
+                            <button id="submit" type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>

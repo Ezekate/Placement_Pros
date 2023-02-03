@@ -9,42 +9,30 @@
             <div class="form-items border-success">
                 <h3 style="overflow: hidden; scroll-behavior: smooth;"class="text-center">Apply For The Job</h3>
                 <hr >
-                <p class="text-info">.</p>
                 <div class="col-12 ">
-                    <div class=" mt-2">
+                    <div class=" mt-">
                         @if (Model != null)
                         {
                             <h5>  @Model.Title</h5>
                             <div class="row">
-
-                                <div class="col-2 mb-2">
-
-                                    <p> <i class="fa fa-map-marker text-success  "></i>@Model.Location</p>
+                                <div class="col-2 mb-">
+                                    <p> <i class="fa fa-map-marker text-success  "></i> @Model.Location</p>
                                 </div>
-                                <div class="col-2 mb-2">
-                                    <p><i class=" text-success  fa fa-clock-o"></i>@Model.JobType</p>
+                                <div class="col-2 mb-">
+                                    <p><i class=" text-success  fa fa-clock-o"></i> @Model.JobType</p>
                                 </div>
-                                <div class="col-2 mb-2">
-
-                                    <p><i class=" text-success fa fa-usd"></i>@Model.Salary</p>
-
+                                <div class="col-2 mb-">
+                                    <p><i class=" text-success fa fa-usd"></i>  @Model.Salary</p>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col- mb-2">
-                                    <h3 class="title text-success">Discription</h3>
-                                    <br />
-                                    <p class="ml-3">@Html.Raw(Model.Discription)</p>
-                                    <div class="text ml-5"><a href=""></a></div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class=" col- mb-1">
-                                    <h3 class="title text-success">Requirement</h3>
-                                    <br />
-                                    <p class="ml-3">@Html.Raw(Model.Requirement)</p>
-                                    <div class="text ml-5"><a href=""></a></div>
+
+                                <div class="col-12 ">
+                                    <h4 class="title text-success">Discription</h4>
+                                    <h5 class="ml-3">@Html.Raw(Model.Discription)</h5>
+                                </div>
+                                <div class=" col-12 ">
+                                    <h4 class="title text-success">Requirement</h4>
+                                    <h5 class="ml-3">@Html.Raw(Model.Requirement)</h5>
                                 </div>
 
                             </div>
@@ -63,7 +51,7 @@
                             </div>
 
                         </div>
-                        <div class="m-auto">
+                        <div class="m-auto mt-2">
                             <button class="btn btn-blue btn-primary mb-3 text-center" onclick="myJob('@Model.Id')">Apply Here</button>
                         </div>
                     </div>

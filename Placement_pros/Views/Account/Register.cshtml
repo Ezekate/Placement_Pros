@@ -1,7 +1,7 @@
 ﻿@model Core.VeiwModel.ApplicationUserViewModel
 
 
-<div class="col-8 form-body m-auto shadow bg-white ">
+<div class="col-8 form-body m-auto shadow bg-white mt-4 ">
 
     @if (TempData["Message"] != null)
     {
@@ -11,9 +11,9 @@
 
     <div class="form-holder pt-0">
         <div class="form-content pt-4">
-            <div class="form-items">
+            <div class="form-items border border-success">
                 <h3>Register Today</h3>
-                <p class="text-info">Fill in the data below.</p>
+                <p class="text-success">Fill in the data below.</p>
 
 
                 <form asp-controller="Account" asp-action="Register" method="post" class="requires-validation">
@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label asp-for="FirstName">FirstName</label>
-                            <input type="text" asp-for="FirstName" class="form-control" placeholder="Frist Name" required>
+                            <input type="text" asp-for="FirstName" class="form-control" placeholder="First Name" required>
                             <div class="valid-feedback">Username field is valid!</div>
                             <div class="invalid-feedback">Username field cannot be blank!</div>
                         </div>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label asp-for="PhoneNo"></label>
-                            <input type="text" asp-for="PhoneNo" class="form-control" placeholder="Phone no" required>
+                            <input type="number" asp-for="PhoneNo" class="form-control" placeholder="Phone no" required>
                             <div class="valid-feedback">PhoneNo field is valid!</div>
                             <div class="invalid-feedback">PhoneNo field cannot be blank!</div>
                         </div>

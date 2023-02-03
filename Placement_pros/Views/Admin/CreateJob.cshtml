@@ -18,30 +18,30 @@
                         <div class="row">
                             <div class="col-md-6 p-1">
                                 <label asp-for="CompanyName"> CompanyName</label>
-                                <input asp-for="CompanyName" class="form-control" type="text" placeholder="CompanyName" style="border:none; outline:none; background-color:#f5f5f5;">
+                                <input asp-for="CompanyName" class="form-control" type="text" placeholder="CompanyName" style="border:none; outline:none; background-color:#f5f5f5; "required>
                             </div>
                             <div class="col-md-6 p-1">
                                 <label asp-for="Title"> Title</label>
-                                <input asp-for="Title" class="form-control" type="text" placeholder="JobName" style="border:none; outline:none; background-color:#f5f5f5;">
+                                <input asp-for="Title" class="form-control" type="text" placeholder="JobName" style="border:none; outline:none; background-color:#f5f5f5;"required>
                             </div>
                             <div class="col-md-6 p-1">
                                 <label asp-for="Location"> Location</label>
-                                <input asp-for="Location" class="form-control" type="text" placeholder="Location" style="border:none; outline:none; background-color:#f5f5f5;">
+                                <input asp-for="Location" class="form-control" type="text" placeholder="Location" style="border:none; outline:none; background-color:#f5f5f5;"required>
                             </div>
                             <div class="col-md-6 p-1">
                                 <label asp-for="Salary"> Salary</label>
-                                <input asp-for="Salary" class="form-control" type="text" placeholder="Salary" style="border:none; outline:none; background-color:#f5f5f5;">
+                                <input asp-for="Salary" class="form-control" type="text" placeholder="Salary" style="border:none; outline:none; background-color:#f5f5f5;"required>
                                 <div class="valid-feedback">Name field is valid!</div>
                             </div>
-                            <div class="col-md-6 p-1">
+                            <div class="col-md-12 p-1">
                                 <label>Jobtype </label>
-                                <select asp-for="JobType" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdown, "Id", "Name"))" style="border:none; outline:none; background-color:#f5f5f5;">
+                                <select asp-for="JobType" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdown, "Id", "Name"))" style="border:none; outline:none; background-color:#f5f5f5;"required>
                                 </select>
                             </div>
-                            <div class="col-md-6 mb-1">
+                            @*<div class="col-md-6 mb-1">
                                 <label>UploadPicture</label>
                                 <input id="picture" class="form-control" name="text" type="file" onchange="ConvertPictureToBase64(event)" style="border:none; outline:none; background-color:#f5f5f5;">
-                            </div>
+                            </div>*@
 
                             <div class="col-md-12 p-1">
                                 <label asp-for="Discription">Discription</label>

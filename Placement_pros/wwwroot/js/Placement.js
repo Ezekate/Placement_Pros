@@ -32,7 +32,7 @@ function myEducation() {
 	data.StartDate = $("#startdate").val();
 	data.EndDate = $("#enddate").val();
 	if (data != "") {
-		var educationQalification = data;
+		let educationQalification = data;
 		$.ajax({
 			type: 'Post',
 			dataType: 'Json',
@@ -40,6 +40,36 @@ function myEducation() {
 			data:
 			{
 				education:educationQalification,
+			},
+			success: function (result) {
+				debugger;
+				if (!result.isError) {
+					var url = '/User/Profile';
+					successAlertWithRedirect(result.msg, url);
+				}
+				else {
+					errorAlert(result.msg);
+				}
+			},
+			error: function (ex) {
+				errorAlert("Error Occured,try again.");
+			}
+		})
+	}
+}
+function mySkill(){
+	debugger;
+	var data = {};
+	data.Name = $("#name").val();
+	if (data != "") {
+		let skillJob = data;
+		$.ajax({
+			type: 'Post',
+			dataType: 'Json',
+			url: '/user/Skill',
+			data:
+			{
+				skilll :skillJob,
 			},
 			success: function (result) {
 				debugger;
@@ -243,13 +273,13 @@ function myfilter() {
 								' <div class="card border hover p-4 mt-2 border-info mb-0 text-black" id="' + job.id + '">' +
 								'<div class="row" ><div class="col-8  bbb-text "><div class=" row list-inline-item">' +
 								'<h3 class="fs-14 mb-1 ml-3 " style="font-size:16px">' + job.title + '</h3></div>' +
-								'<div class=" row list-inline-item"><h5 class=" fs-14 mb-1 text-info ml-3">' + job.companyName + '</h5></div>' +
+								'<div class=" row list-inline-item"><h5 class=" fs-14 mb-1 text-primary ml-3">' + job.companyName + '</h5></div>' +
 								'<div class=" row list-inline-item"><p class=" fs-14 mb-1 ml-3"><i class="fa fa-map-marker"></i>' + job.location + '</p> </div>' +
-								'<div class=" row list-inline-item stretched-link"><p class=" fs-14 mb-1  ml-3"> $' + job.salary + '</div>' +
-								'<div class="stretched-link row ml-2"><span class="badge bg-info p-1">' + job.type + '</span> </div></div>' +
+								'<div class=" row list-inline-item "><p class=" fs-14 mb-1  ml-3"> $' + job.salary + '</div>' +
+								'<div class=" row ml-2"><span class=" text-primary offset-12 p-1">' + job.type + '</span> </div></div>' +
 								'<div class="col-md-3"><a class="d-flex justify-content-end" style="color:#FFFF33;height:20px; margin-left:10px;">' +
 								'<img src="/image/avatar1.jpg" height="100" width="100" class="rounded-circle" alt="Cinque Terre"/></a></div><div>' +
-								'<a class="btn btn-info float-left offset-4" asp-controller="User" asp-action="JobApplication" asp-route-id="'+ job.id +'">Apply</a></div></div></div>'
+								'<a class="btn btn-primary float-left offset-11" asp-controller="User" asp-action="JobApplication" asp-route-id="'+ job.id +'">Apply</a></div></div></div>'
 							);
                         });
 					}

@@ -44,6 +44,29 @@ namespace Logic.Helpers
                 await _userManager.AddToRoleAsync(applicationUser, "User");
                 return applicationUser;
             }
+        
+            return null;
+        }
+        public async Task<ApplicationUser> CreateAdmin(ApplicationUserViewModel applicationUserViewModel)
+        {
+            //mapping from applicationViewModel into applicationuser
+            var applicationUser = new ApplicationUser
+            {
+                FirstName = applicationUserViewModel.FirstName,
+                LastName = applicationUserViewModel.LastName,
+                Email = applicationUserViewModel.Email,
+                GenderId = applicationUserViewModel.GenderId,
+                CountryId = applicationUserViewModel.CountryId,
+                StateId = applicationUserViewModel.StateId,
+                DateCreated = DateTime.Now,
+                UserName = applicationUserViewModel.Email,
+            };
+            var result = await _userManager.CreateAsync(applicationUser, applicationUserViewModel.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(applicationUser, "Admin");
+                return applicationUser;
+            }
             return null;
         }
         public async Task<ProfileVeiwModel> GetUserProfile(string userName)
@@ -200,6 +223,24 @@ namespace Logic.Helpers
             return null;
         }
 
+        public bool EditSKill(SkillViewModel skill)
+        {
+            var skillTobeEdit = _dbContext.Skills.Where(x => x.Name == skill.Name).FirstOrDefault();
+
+            if (skillTobeEdit != null)
+            {
+                skillTobeEdit.Name = skill.Name;
+
+
+                _dbContext.Update(skillTobeEdit);
+                _dbContext.SaveChanges();
+
+                return true;
+            }
+
+            return true;
+        }
+
 
         public bool EditPersonalInfo(PersonalInfoViewModel personalInfo)
         {
@@ -222,7 +263,10 @@ namespace Logic.Helpers
 
                 return true;
             }
-            return false;
+            _dbContext.Update(userToEdit);
+            _dbContext.SaveChanges();
+
+            return true;
         }
 
         public List<JobVeiwModel> AvaliableJobs()
@@ -327,12 +371,13 @@ namespace Logic.Helpers
             }
             return null;
         }
-        public List<JobApplications>GetJobsbyId( string userId)
+        public List<JobApplications>GetJobsbyId( string userName)
         {
+            var userid = _dbContext.Users.Where(x => x.UserName == userName).FirstOrDefault().Id;
             var getalljob = new List<JobApplications>();
             if (getalljob != null)
             {
-                var allJobs = _dbContext.JobApplications.Where(v => v.UserId == userId).ToList();
+                var allJobs = _dbContext.JobApplications.Where(v => v.UserId == userid).ToList();
                 return allJobs;
             }
             return getalljob;

@@ -28,6 +28,22 @@ namespace Placement_pros.Controllers
             _userManager = userManager;
             _dbContext = dbContext;
         }
+        public IActionResult RegisterAdmin()
+        {
+            try
+            {
+                ViewBag.Gender = _dropdownHelper.GetGenderDropdown();
+                ViewBag.Countries = _dbContext.Country.Where(s => s.Id != 0).ToList();
+                return View();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
         [HttpGet]
         public IActionResult CreateDropdown()
@@ -94,6 +110,7 @@ namespace Placement_pros.Controllers
             ViewBag.dropdown = _dropdownHelper.GetJobTypeDropdown();
             try
             {
+                
                 if (string.IsNullOrEmpty(jobUpload.CompanyName))
                 {
                     SetMessage("CompanyName is empty", Message.Category.Error);
@@ -106,7 +123,7 @@ namespace Placement_pros.Controllers
                     return View(jobUpload);
                 }
 
-                if (jobUpload.JobType > 0)
+                if (jobUpload.JobType == 0)
                 {
                     SetMessage("JobType is empty", Message.Category.Error);
                     return View(jobUpload);
@@ -120,12 +137,11 @@ namespace Placement_pros.Controllers
                 var CreateJob = _adminHelper.CreateJob(jobUpload);
                 if (CreateJob != null)
                 {
-                    ModelState.Clear();
-
-                    SetMessage("There is no available job", Message.Category.Error);
-                    return View();
+                    return RedirectToAction( "CreateJob");
                 }
-                return RedirectToAction("ListOfJob", "Admin");
+                SetMessage("Job created successfully", Message.Category.Error);
+                return View(jobUpload);
+
             }
 
             catch (Exception)

@@ -21,8 +21,8 @@ namespace Logic.IHelpers
         JobVeiwModel GetDescription(Guid id);
         JobApplications CreatResume(JobApplications jobapplication);
         List<JobVeiwModel> JobFilter(JobVeiwModel jobsearch);
-        List<JobApplications> GetJobsbyId(string userId);
-
+        List<JobApplications> GetJobsbyId(string userName);
+        Task<ApplicationUser> CreateAdmin(ApplicationUserViewModel applicationUserViewModel);
     }
 }
 

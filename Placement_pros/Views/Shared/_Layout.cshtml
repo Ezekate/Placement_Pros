@@ -55,9 +55,9 @@
 
         function infoAlert(message) {
             Swal.fire({
-                icon: 'info',
+                icon: 'success',
                 text: message,
-                confirmButtonColor: "#0253cc",
+                confirmButtonColor: "green",
                 width: 350,
             })
         }
@@ -65,7 +65,7 @@
         function infoAlertWithStyles(message) {
             Swal.fire({
                 title: 'Notification',
-                icon: 'info',
+                icon: 'green',
                 text: message,
                 width: 350,
             })
@@ -75,7 +75,7 @@
             Swal.fire({
                 icon: 'success',
                 text: message,
-                confirmButtonColor: "#0253cc",
+                confirmButtonColor: "green",
                 timer: 30000,
                 width: 350,
             })
@@ -85,7 +85,7 @@
             Swal.fire({
                 icon: 'error',
                 text: message,
-                confirmButtonColor: "#0253cc",
+                confirmButtonColor: "green",
                 width: 350,
             }).then((isConfirm) => {
                 if (isConfirm) {
@@ -104,7 +104,7 @@
                 icon: "error",
                 timer: 30000,
                 width: 350,
-                confirmButtonColor: "#0253cc",
+                confirmButtonColor: "green",
                 overlay: "background - color: rgba(43, 165, 137, 0.45)",
             }).then(function () {
 
@@ -116,7 +116,7 @@
             Swal({
                 icon: 'success',
                 text: message,
-                confirmButtonColor: "#0253cc",
+                confirmButtonColor: "green",
                 width: 350,
             }).then((isConfirm) => {
                 if (isConfirm) {
@@ -132,7 +132,7 @@
                 icon: "success",
                 timer: 30000,
                 width: 350,
-                confirmButtonColor: "#0253cc",
+                confirmButtonColor: "green",
                 overlay: "background - color: rgba(43, 165, 137, 0.45)",
             }).then(function () {
 
@@ -147,7 +147,7 @@
                 icon: "error",
                 buttons: {
                     cancle: "No",
-                    confirmButtonColor: "#0253cc",
+                    confirmButtonColor: "green",
                     width: 350,
                     change: "Yes",
                     new: "Create Pin",
@@ -174,7 +174,7 @@
                 text: "Check your inbox Or Change email",
                 type: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#0253cc",
+                confirmButtonColor: "green",
                 width: 350,
                 confirmButtonText: "Resend Email",
                 cancelButtonText: "Change Email",
