@@ -165,40 +165,40 @@
 
         <div class="col-md-6 d-flex mt-2 ">
             <div class="card profile-box flex-fill">
-                <div class="card-body border border-primary shadow-lg">
-                    <h3 class="card-title">Work Experience <a href="#" data-toggle="modal" data-target="#WorkExperience"><i class="fa fa-plus text-dark bg-light " style="font-size: 19px; float: right;"></i></a></h3>
-                    <div class="experience-box">
-                       @if (Model?.WorkExperiences != null)
-                        {
-                          <ul class="experience-list">
+            <div class="card-body border border-primary shadow-lg">
+                <h3 class="card-title">Work Experience <a href="#" data-toggle="modal" data-target="#WorkExperience"><i class="fa fa-plus text-dark bg-light " style="font-size: 19px; float: right;"></i></a></h3>
+                <div class="experience-box">
+                    @if (Model?.WorkExperiences != null)
+                    {
+                        <ul class="experience-list">
                             @foreach (var work in Model.WorkExperiences)
                             {
-                              <li>
-                                  <div class="experience-user">
-                                      <div class="before-circle"></div>
-                                  </div>
-                                  <div class="experience-content">
-                                      <a class="text-white ml-auto" data-toggle="modal" data-target="#EditWorkExperience" onclick="GetWorkById('@work.Id')"><i class="fa fa-pencil text-dark bg-light  " style="font-size: 19px; float: right;"></i> </a>
-                                      <div class="timeline-content">
-                                          <a href="#/" class="name">@work.WorkPlace</a>
+                                <li>
+                                    <div class="experience-user">
+                                        <div class="before-circle"></div>
+                                    </div>
+                                    <div class="experience-content">
+                                        <a class="text-white ml-auto" data-toggle="modal" data-target="#EditWorkExperience" onclick="GetWorkById('@work.Id')"><i class="fa fa-pencil text-dark bg-light  " style="font-size: 19px; float: right;"></i> </a>
+                                        <div class="timeline-content">
+                                            <a href="#/" class="name">@work.WorkPlace</a>
 
-                                          <p>@work.Discription</p>
-                                          <p>@work.Location</p>
-                                          <p class="time">@work.DateStarted.ToString("Y") - @work.DateStarted.ToString("Y")</p>
+                                            <p>@work.Discription</p>
+                                            <p>@work.Location</p>
+                                            <p class="time">@work.DateStarted.ToString("Y") - @work.DateStarted.ToString("Y")</p>
 
 
-                                      </div>
-                                  </div>
+                                        </div>
+                                    </div>
 
-                              </li>
+                                </li>
 
-                             }
+                            }
 
-                         
-                          </ul>
-                        }
-                    </div>
+
+                        </ul>
+                    }
                 </div>
+            </div>
             </div>
         </div>
     </div>
@@ -281,7 +281,7 @@
                                     <div class="col-md-12 mb-1 ">
                                         <div class="form-group">
                                             <label>Describe your self in few words</label>
-                                            <textarea row="30" cols="5" class="form-control" name="text" id="describe" value="@Model?.PersonalInfo?.Discription" style="border:none; outline:none; background-color:#f5f5f5;"></textarea>
+                                            <textarea row="30" cols="5" class="form-control" name="text" id="describe" value="@Model?.PersonalInfo?.Discription" style="border:none; outline:none; background-color:#f5f5f5;"required></textarea>
                                         </div>
                                     </div>
                                     <hr>
@@ -536,7 +536,7 @@
                                                 <div class="form-group">
                                                     <label asp-for="Skill.Name">Skills</label>
                                                     <input id="editId" hidden>
-                                                    <input asp-for="Skill.Name" row="30" cols="5" id="skillsname" class="form-control">
+                                                    <input asp-for="Skill.Name" row="30" cols="5" id="skillsname" class="form-control"required>
                                                 </div>
                                             </div>
                                             <hr>
@@ -580,32 +580,32 @@
                                         <div class="form-group">
                                             <labe>Name</labe>
                                             <input id="educateId" hidden>
-                                            <input class="form-control" type="text" id="eduName" placeholder="universty attended" style="border:none;">
+                                            <input class="form-control" type="text" id="eduName" placeholder="universty attended" style="border:none;"required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 mb-1 ">
                                         <div class="form-group">
                                             <label>Degree</label>
-                                            <input class="form-control" type="text" id="eduDegree" placeholder="Degree" style="border:none; ">
+                                            <input class="form-control" type="text" id="eduDegree" placeholder="Degree" style="border:none; "required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-1 ">
                                         <div class="form-group">
                                             <label>Field Of study</label>
-                                            <input class="form-control" id="eduFieldofstudy" type="text" placeholder="Field of study" style="border:none; ">
+                                            <input class="form-control" id="eduFieldofstudy" type="text" placeholder="Field of study" style="border:none; "required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-1 ">
                                         <div class="form-group">
                                             <label>Grade</label>
-                                            <input type="number" id="eduGrade" class="form-control" style="border:none;">
+                                            <input type="number" id="eduGrade" class="form-control" style="border:none;"required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-1 ">
                                         <div class="form-group">
                                             <label>StartDate</label>
-                                            <input type="date"  id="eduStartdate"  class="form-control" style="border:none;">
+                                            <input type="date"  id="eduStartdate"  class="form-control" style="border:none;"required>
 
                                         </div>
                                     </div>
@@ -613,7 +613,7 @@
                                         <div class="form-group">
                                             <label>EndDate</label>
 
-                                            <input type="date" id="eduEnddate"  class="form-control" style="border:none;">
+                                            <input type="date" id="eduEnddate"  class="form-control" style="border:none;"required>
 
                                         </div>
                                     </div>

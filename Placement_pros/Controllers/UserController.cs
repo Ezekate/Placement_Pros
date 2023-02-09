@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Placement_pros.Controllers
 {
-    public class UserController : BaseController
+    public class UserController:BaseController
     {
         private readonly IDropdownHelper _dropdownHelper;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -58,6 +58,11 @@ namespace Placement_pros.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(skill.Name))
+                {
+                    return Json(new { isError = true, msg = "Add a Skill" });
+                }
+
                 var userName = User?.Identity?.Name;
                 var user = _userManager.FindByNameAsync(userName).Result;
             
@@ -70,7 +75,8 @@ namespace Placement_pros.Controllers
                 {
                     return Json(new { isError = false, msg =" Skill Added successfully" });
                 }
-                return Json(new { isError = true, msg = "Skill already exist" });
+                return Json(new { isError = true, msg = "Add a new Skill" });
+             
             }
             catch (Exception)
             {
@@ -324,7 +330,7 @@ namespace Placement_pros.Controllers
 
                 if (useEdited == true)
                 {
-                    return Json(new { isError = false, msg = "user detail updated successfully " });
+                    return Json(new { isError = false, msg = "User Details updated successfully " });
                 }
                 return Json(new { isError = true, msg = "Error Occured" });
             }

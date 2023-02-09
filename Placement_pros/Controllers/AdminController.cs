@@ -134,15 +134,30 @@ namespace Placement_pros.Controllers
                     SetMessage("Salary is empty", Message.Category.Error);
                     return View(jobUpload);
                 }
+                if (string.IsNullOrEmpty(jobUpload.Requirement) || jobUpload.Requirement == "<p><br></p>")
+                {
+                    SetMessage("Requirement is empty", Message.Category.Error);
+                    return View(jobUpload);
+                }
+                if (string.IsNullOrEmpty(jobUpload.Discription) || jobUpload.Discription == "<p><br></p>")
+                {
+                    SetMessage(" Discription is empty", Message.Category.Error);
+                    return View(jobUpload);
+                }
+
+
                 var CreateJob = _adminHelper.CreateJob(jobUpload);
                 if (CreateJob != null)
                 {
-                    return RedirectToAction( "CreateJob");
+                    ModelState.Clear();
+                    SetMessage("Job created successfully", Message.Category.Information);
+                    return View();
                 }
-                SetMessage("Job created successfully", Message.Category.Error);
-                return View(jobUpload);
 
+                SetMessage("Unable to create Job ", Message.Category.Error);
+                return View(jobUpload);
             }
+            
 
             catch (Exception)
             {
