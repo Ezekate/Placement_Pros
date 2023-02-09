@@ -38,11 +38,24 @@ INSERT INTO State VALUES (1,'Yobe',1,0);
 INSERT INTO State VALUES (1,'Zamfara',1,0);
 INSERT INTO State VALUES (1,'Abuja',1,0);
 
+INSERT INTO State VALUES (1,'Alabama',1,0);
+INSERT INTO State VALUES (1,'Alasaka',1,0);
+INSERT INTO State VALUES (1,'Arizona',1,0);
+INSERT INTO State VALUES (1,'Arlkansa',1,0);
+INSERT INTO State VALUES (1,'Californa',1,0);
+INSERT INTO State VALUES (1,'Colorado',1,0);
+
+INSERT INTO State VALUES (1,'Accra',1,0);
+INSERT INTO State VALUES (1,'Ho',1,0);
+INSERT INTO State VALUES (1,'Cape Coast',1,0);
+INSERT INTO State VALUES (1,'Takoradi',1,0);
+
+
 
 
 INSERT INTO AspNetRoles VALUES ( NEWID(),'SuperAdmin','SUPERADMIN',NEWID() );
 INSERT INTO AspNetRoles VALUES ( NEWID(),'User','USER',NEWID());  
-INSERT INTO AspNetRoles VALUES ( NEWID(),'CompanyAdmin','COMPANYADMIN',NEWID() );
+INSERT INTO AspNetRoles VALUES ( NEWID(),'Admin','ADMIN',NEWID() );
 
 
 INSERT INTO CommonDropDowns VALUES (1,GETDATE(),'Female',1,0);

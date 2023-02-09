@@ -47,6 +47,7 @@ namespace Logic.Helpers
         
             return null;
         }
+
         public async Task<ApplicationUser> CreateAdmin(ApplicationUserViewModel applicationUserViewModel)
         {
             //mapping from applicationViewModel into applicationuser
@@ -198,20 +199,19 @@ namespace Logic.Helpers
             }
             return null;
         }
-        public async Task<WorkExperience> CreateWorkExperience(WorkExperienceViewModel WorkExperience, string userId)
+        public async Task<WorkExperience> CreateWorkExperience(WorkExperienceViewModel workExperience, string userId)
         {
-            var newWork = _dbContext.WorkExperiences.Where(y => y.UserId == userId).FirstOrDefault();
-            if (newWork == null)
+            //var newWork = _dbContext.WorkExperiences.Where(y => y.UserId == userId || y.Id == workExperience.Id).FirstOrDefault();
+            if (userId != null)
             {
                 var work = new WorkExperience
                 {
-                    Id = WorkExperience.Id,
-                    Location = WorkExperience.Location,
-                    Discription = WorkExperience.Discription,
+                    Location = workExperience.Location,
+                    Discription = workExperience.Discription,
                     DateAdded = DateTime.Now,
-                    DateStarted = WorkExperience.DateStarted,
-                    DateClosed = WorkExperience.DateClosed,
-                    WorkPlace = WorkExperience.WorkPlace,
+                    DateStarted = workExperience.DateStarted,
+                    DateClosed = workExperience.DateClosed,
+                    WorkPlace = workExperience.WorkPlace,
                     UserId = userId,
                     Deleted = false,
                     Active = true,
@@ -225,21 +225,79 @@ namespace Logic.Helpers
 
         public bool EditSKill(SkillViewModel skill)
         {
-            var skillTobeEdit = _dbContext.Skills.Where(x => x.Name == skill.Name).FirstOrDefault();
-
-            if (skillTobeEdit != null)
+            if (skill != null)
             {
-                skillTobeEdit.Name = skill.Name;
+                var skillTobeEdited = _dbContext.Skills.Where(x => x.Name == skill.Name || x.Id == skill.Id).FirstOrDefault();
+                if (skillTobeEdited != null)
+                {
+
+                    skillTobeEdited.Id = skill.Id;
+                    skillTobeEdited.Name = skill.Name;
 
 
-                _dbContext.Update(skillTobeEdit);
-                _dbContext.SaveChanges();
+                    _dbContext.Update(skillTobeEdited);
+                    _dbContext.SaveChanges();
+                    return true;
+                }
 
-                return true;
+               
             }
 
-            return true;
+            return false;
         }
+        public bool EditEducation(EducationalQualificationVeiwModel education)
+        {
+            if (education != null)
+            {
+                var educationTobeEdited = _dbContext.EducationalQualifications.Where(x => x.Name == education.Name || x.Id == education.Id).FirstOrDefault();
+                if (educationTobeEdited != null)
+                {
+
+                    educationTobeEdited.Id = education.Id;
+                    educationTobeEdited.Degree = education.Degree;
+                    educationTobeEdited.EndDate = education.EndDate;
+                    educationTobeEdited.FieldOfStudy = education.FieldOfStudy;
+                    educationTobeEdited.Grade = education.Grade;
+                    educationTobeEdited.StartDate = education.StartDate;
+
+
+                    _dbContext.Update(educationTobeEdited);
+                    _dbContext.SaveChanges();
+                    return true;
+                }
+
+
+            }
+
+            return false;
+        }
+        public bool EditWork(WorkExperienceViewModel work)
+        {
+            if (work != null)
+            {
+                var workTobeEdited = _dbContext.WorkExperiences.Where(x => x.UserId == work.UserId || x.Id == work.Id).FirstOrDefault();
+                if (workTobeEdited != null)
+                {
+
+                    workTobeEdited.Id = work.Id;
+                    workTobeEdited.DateAdded = work.DateAdded;
+                    workTobeEdited.DateClosed = work.DateClosed;
+                    workTobeEdited.Discription = work.Discription;
+                    workTobeEdited.Location = work.Location;
+                    workTobeEdited.WorkPlace = work.WorkPlace;
+
+
+                    _dbContext.Update(workTobeEdited);
+                    _dbContext.SaveChanges();
+                    return true;
+                }
+
+
+            }
+
+            return false;
+        }
+
 
 
         public bool EditPersonalInfo(PersonalInfoViewModel personalInfo)

@@ -60,28 +60,86 @@ namespace Placement_pros.Controllers
             {
                 var userName = User?.Identity?.Name;
                 var user = _userManager.FindByNameAsync(userName).Result;
-                //ModelState.Clear();
-                //if (user == null)
-                //{
-                //    return RedirectToAction("Profile", "User");
-                //}
-                //var createSkill = _userHelper.CreateSkill(skill, user.Id);
-                //if (createSkill != null)
-                //{
-                //    return RedirectToAction("Profile", "User");
-
-                //}
-                //return RedirectToAction("Profile", "User");
+            
                 if (user == null)
                 {
                     return Json(new { isError = true, msg = "Error Occured" });
                 }
-                var createSkill = _userHelper.CreateSkill(skill, user.Id);
+                var createSkill = _userHelper.CreateSkill(skill, user.Id).Result;
                 if (createSkill != null)
                 {
-                    return Json(new { isError = false, msg =" Skill updated successfully" });
+                    return Json(new { isError = false, msg =" Skill Added successfully" });
+                }
+                return Json(new { isError = true, msg = "Skill already exist" });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpGet]
+        public JsonResult GetSkill(int? id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    var result = _dbContext.Skills.Where(b => b.Id == id ).FirstOrDefault();
+                    if (result != null)
+                    {
+                        return Json(new { isError = false, data = result });
+                    }
+                }
+                return Json(new { isError = true, msg = "No Result Found" });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult EditSkill(SkillViewModel skill)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(skill.Name))
+                {
+                    return Json(new { isError = true, msg = "Error Occured" });
+                }
+                var skillEdited = _userHelper.EditSKill(skill);
+
+                if (skillEdited == true)
+                {
+                    return Json(new { isError = false, msg = "Skill Edited successfully " });
                 }
                 return Json(new { isError = true, msg = "Error Occured" });
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpGet]
+        //To Edit educational qualification firstly u need to get
+        public JsonResult GetEducation(int? id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    var result = _dbContext.EducationalQualifications.Where(b => b.Id == id).FirstOrDefault();
+                    if (result != null)
+                    {
+                        return Json(new { isError = false, data = result });
+                    }
+                }
+                return Json(new { isError = true, msg = "No Result Found" });
             }
             catch (Exception)
             {
@@ -90,10 +148,35 @@ namespace Placement_pros.Controllers
             }
         }
         [HttpPost]
-        public JsonResult EducationalQualification(EducationalQualificationVeiwModel education)
+        public JsonResult EditEducation(EducationalQualificationVeiwModel education)
         {
             try
             {
+                if (string.IsNullOrEmpty(education.Name))
+                {
+                    return Json(new { isError = true, msg = "Error Occured" });
+                }
+                var EducationEdited = _userHelper.EditEducation(education);
+
+                if (EducationEdited == true)
+                {
+                    return Json(new { isError = false, msg = "Educational Qualification Edited successfully " });
+                }
+                return Json(new { isError = true, msg = "Error Occured" });
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+            public JsonResult EducationalQualification(EducationalQualificationVeiwModel education)
+            {
+              try
+              {
                 var userName = User?.Identity?.Name;
                 var user = _userManager.FindByNameAsync(userName).Result;
                 if (user == null)
@@ -124,6 +207,50 @@ namespace Placement_pros.Controllers
 
                 }
                 return Json(new { isError = true, msg = "Error Occured" });
+               }
+              catch (Exception)
+              {
+
+                throw;
+               }
+            }
+
+        [HttpGet]
+        public JsonResult GetWork(int? id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    var result = _dbContext.WorkExperiences.Where(b => b.Id == id).FirstOrDefault();
+                    if (result != null)
+                    {
+                        return Json(new { isError = false, data = result });
+                    }
+                }
+                return Json(new { isError = true, msg = "No Result Found" });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public JsonResult EditWork(WorkExperienceViewModel work)
+        {
+            try
+            {
+              
+                var WorktobeEdited = _userHelper.EditWork(work);
+
+                if (WorktobeEdited == true)
+                {
+                    return Json(new { isError = false, msg = "Work Experience Edited successfully " });
+                }
+                return Json(new { isError = true, msg = "Error Occured" });
+
             }
             catch (Exception)
             {
@@ -156,7 +283,7 @@ namespace Placement_pros.Controllers
                 throw;
             }
         }
-        [HttpPost]
+            [HttpPost]
         [DisableRequestSizeLimit]
         public JsonResult EditPersonalInfo(PersonalInfoViewModel personalInfo)
         {

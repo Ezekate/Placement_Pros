@@ -60,7 +60,7 @@ function myEducation() {
 function mySkill(){
 	debugger;
 	var data = {};
-	data.Name = $("#name").val();
+	data.Name = $("#skillname").val();
 	if (data != "") {
 		let skillJob = data;
 		$.ajax({
@@ -69,7 +69,7 @@ function mySkill(){
 			url: '/user/Skill',
 			data:
 			{
-				skilll :skillJob,
+				skill :skillJob,
 			},
 			success: function (result) {
 				debugger;
@@ -212,6 +212,220 @@ function ConvertFilesToBase64(e) {
             }
 		 
 		}
+	}
+}
+
+
+function GetSkillById(id) {
+	debugger;
+	$.ajax({
+		type: 'GET',
+		url: '/User/GetSkill', // we are calling json method
+		dataType: 'json',
+		data:
+		{
+			id: id
+		},
+		success: function (data) {
+			debugger
+			if (!data.isError) {
+
+				$("#editId").val(data.data.id);
+				$("#skillsname").val(data.data.name);
+			}
+		},
+		error: function (ex) {
+			"please fill the form correctly" + errorAlert(ex);
+		}
+	});
+};
+
+function editSkill() {
+	debugger;
+	var data = {};
+	data.Id = $("#editId").val();
+	data.Name = $("#skillsname").val();
+	if (data != "")
+	{
+		var skilltoEdit = data;
+		$.ajax({
+			type: 'Post',
+			dataType: 'Json',
+			url: '/user/EditSkill',
+			data:
+			{
+				skill: skilltoEdit,
+			},
+			success: function (result) {
+				debugger;
+				if (!result.isError) {
+					var url = '/User/Profile';
+					//location.href = url;
+					successAlertWithRedirect(result.msg, url);
+				}
+				else {
+					errorAlert(result.msg);
+				}
+			},
+			error: function (ex) {
+				errorAlert("Error Occured,try again.");
+			}
+		})
+	}
+}
+function dateToInput(dateString) {
+
+	var now = new Date(dateString);
+	var day = ("0" + now.getDate()).slice(-2);
+	var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+	var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+	return today;
+}
+
+function GetQualificationById(id) {
+	debugger;
+	$.ajax({
+		type: 'GET',
+		url: '/User/GetEducation',
+		dataType: 'json',
+		data:
+		{
+			id: id
+		},
+		success: function (result) {
+			debugger
+			if (!result.isError) {
+
+				$("#educateId").val(result.data.id);
+				$("#eduName").val(result.data.name);
+				$("#eduDegree").val(result.data.degree);
+				$("#eduFieldofstudy").val(result.data.fieldOfStudy);
+				$("#eduGrade").val(result.data.grade);
+				$("#eduStartdate").val(dateToInput(result.data.startDate));
+				$("#eduEnddate").val(dateToInput(result.data.endDate));
+			}
+		},
+		error: function (ex) {
+			"please fill the form correctly" + errorAlert(ex);
+		}
+	});
+};
+
+function editEducation() {
+	debugger;
+	var data = {};
+	data.Id = $("#educateId").val();
+	data.Name = $("#eduName").val();
+	data.Degree = $("#eduDegree").val();
+	data.FieldOfStudy = $("#eduFieldofstudy").val();
+	data.Grade = $("#eduGrade").val();
+	data.StartDate = $("#eduStartdate").val();
+	data.EndDate = $("#eduEnddate").val();
+	if (data != "")
+	{
+		var educationtoEdit = data;
+		$.ajax({
+			type: 'Post',
+			dataType: 'Json',
+			url: '/user/EditEducation',
+			data:
+			{
+				education: educationtoEdit,
+			},
+			success: function (result) {
+				debugger;
+				if (!result.isError) {
+					var url = '/User/Profile';
+					successAlertWithRedirect(result.msg, url);
+				}
+				else {
+					errorAlert(result.msg);
+				}
+			},
+			error: function (ex) {
+				errorAlert("Error Occured,try again.");
+			}
+		})
+	}
+}
+
+
+function dateToInput(dateString) {
+
+	var now = new Date(dateString);
+	var day = ("0" + now.getDate()).slice(-2);
+	var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+	var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+	return today;
+}
+
+
+function GetWorkById(id) {
+	debugger;
+	$.ajax({
+		type: 'GET',
+		url: '/User/GetWork', 
+		dataType: 'json',
+		data:
+		{
+			id: id
+		},
+		success: function (data) {
+			debugger
+			if (!data.isError) {
+
+				$("#workId").val(data.data.id);
+				$("#workName").val(data.data.workPlace);
+				$("#worLocation").val(data.data.location);
+				$("#worDate").val(dateToInput(data.data.dateAdded));
+				$("#worDateclosed").val(dateToInput(data.data.dateClosed));
+				$("#worDiscription").val(data.data.discription);
+			}
+		},
+		error: function (ex) {
+			"please fill the form correctly" + errorAlert(ex);
+		}
+	});
+};
+
+function EditWorK() {
+	debugger;
+	var data = {};
+	data.Id = $("#workId").val();
+	data.workPlace = $("#workName").val();
+	data.location = $("#worLocation").val();
+	data.dateAdded = $("#worDate").val();
+	data.dateClosed = $("#worDateclosed").val();
+	data.discription = $("#worDiscription").val();
+	if (data != "")
+	{
+		var worktoEdit = data;
+		$.ajax({
+			type: 'Post',
+			dataType: 'Json',
+			url: '/user/EditWork',
+			data:
+			{
+				work: worktoEdit,
+			},
+			success: function (result) {
+				debugger;
+				if (!result.isError) {
+					var url = '/User/Profile';
+					successAlertWithRedirect(result.msg, url);
+				}
+				else {
+					errorAlert(result.msg);
+				}
+			},
+			error: function (ex) {
+				errorAlert("Error Occured,try again.");
+			}
+		})
 	}
 }
 

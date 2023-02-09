@@ -155,6 +155,7 @@ namespace Placement_pros.Controllers
                     var userDetails = await _userHelper.CreateAdmin(model);
                     if (userDetails != null)
                     {
+
                         return RedirectToAction("Login", "Account");
                     }
                 }
